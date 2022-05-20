@@ -35,10 +35,12 @@ const routes = [{
 	name: 'Products.Edit',
 	component: Edit,
 	meta: { requiresAuth: true }
-}, {
-	path: '/:pathMatch(.*)*',
-	redirect: 'Login'
-}]
+}, 
+// {
+// 	path: '/:pathMatch(.*)*',
+// 	redirect: 'Login'
+// }
+]
 
 const router = createRouter({
 	history: createWebHistory(),

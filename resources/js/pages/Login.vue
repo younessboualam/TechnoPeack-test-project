@@ -1,9 +1,12 @@
 <script setup>
 	import { ref } from 'vue'
-	import axios from 'axios'
 
 	import { useStore } from 'vuex'
 	import { useRouter } from 'vue-router'
+
+	import { useApi } from '../hooks'
+
+	const { execute, results, hasError } = useApi()
 
 	const user = ref({})
 	const isProcessing = ref(false)
@@ -13,11 +16,13 @@
 
 	function login () {
 		isProcessing.value = true
-		
-		axios.get('/sanctum/csrf-cookie').then(res => {
-			store.dispatch('login', user.value)
-			isProcessing.value = false
+
+		execute({
+			url: '/sanctum/csrf-cookie'
 		})
+
+		isProcessing.value = false
+		store.dispatch('login', user.value)
 	}
 </script>
 

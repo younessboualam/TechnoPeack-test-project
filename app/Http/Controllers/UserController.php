@@ -38,7 +38,7 @@ class UserController extends Controller
 			'email' => 'required|email|unique:users',
 			'password' => 'required|min:8',
 		]);
-		// Return errors if validation error occur.
+		
 		if ($validator->fails()) {
 			$errors = $validator->errors();
 			

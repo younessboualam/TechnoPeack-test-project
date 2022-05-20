@@ -19766,7 +19766,7 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
 
-    var _useApi = (0,_hooks__WEBPACK_IMPORTED_MODULE_1__.useApi)('/logout'),
+    var _useApi = (0,_hooks__WEBPACK_IMPORTED_MODULE_1__.useApi)(),
         execute = _useApi.execute;
 
     var loggedIn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
@@ -19816,10 +19816,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks */ "./resources/js/hooks/index.js");
 
 
 
@@ -19828,6 +19827,12 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+
+    var _useApi = (0,_hooks__WEBPACK_IMPORTED_MODULE_1__.useApi)(),
+        execute = _useApi.execute,
+        results = _useApi.results,
+        hasError = _useApi.hasError;
+
     var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
     var isProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
@@ -19835,22 +19840,26 @@ __webpack_require__.r(__webpack_exports__);
 
     function login() {
       isProcessing.value = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/sanctum/csrf-cookie').then(function (res) {
-        store.dispatch('login', user.value);
-        isProcessing.value = false;
+      execute({
+        url: '/sanctum/csrf-cookie'
       });
+      isProcessing.value = false;
+      store.dispatch('login', user.value);
     }
 
     var __returned__ = {
+      execute: execute,
+      results: results,
+      hasError: hasError,
       user: user,
       isProcessing: isProcessing,
       store: store,
       router: router,
       login: login,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      axios: (axios__WEBPACK_IMPORTED_MODULE_1___default()),
       useStore: vuex__WEBPACK_IMPORTED_MODULE_2__.useStore,
-      useRouter: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter
+      useRouter: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter,
+      useApi: _hooks__WEBPACK_IMPORTED_MODULE_1__.useApi
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -21312,10 +21321,11 @@ var routes = [{
   meta: {
     requiresAuth: true
   }
-}, {
-  path: '/:pathMatch(.*)*',
-  redirect: 'Login'
-}];
+} // {
+// 	path: '/:pathMatch(.*)*',
+// 	redirect: 'Login'
+// }
+];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.createWebHistory)(),
   routes: routes
@@ -21406,30 +21416,28 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
         _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
           name: 'Products.List'
         });
-      })["catch"](function (_ref4) {
-        var data = _ref4.response.data;
-        commit('SET_USER', {});
-        commit('SET_AUTHENTICATED', null);
+      })["catch"](function (data) {
+        commit('LOGOUT');
       });
     },
-    register: function register(_ref5, data) {
-      var commit = _ref5.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref6) {
-        var data = _ref6.data;
+    register: function register(_ref4, data) {
+      var commit = _ref4.commit;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref5) {
+        var data = _ref5.data;
         commit('SET_USER', data.user);
         commit('SET_AUTHENTICATED', data.access_token);
         _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
           name: 'Products.List'
         });
-      })["catch"](function (_ref7) {
-        var data = _ref7.response.data;
+      })["catch"](function (_ref6) {
+        var data = _ref6.response.data;
         commit('LOGOUT');
       });
     },
-    logout: function logout(_ref8) {
-      var commit = _ref8.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/logout').then(function (_ref9) {
-        var data = _ref9.data;
+    logout: function logout(_ref7) {
+      var commit = _ref7.commit;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/logout').then(function (_ref8) {
+        var data = _ref8.data;
         commit('LOGOUT');
         localStorage.clear();
         _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({

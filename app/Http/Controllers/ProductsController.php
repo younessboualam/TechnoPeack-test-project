@@ -26,8 +26,7 @@ class ProductsController extends Controller
 		$product->description = $request->description;
 		$product->featured = $request->has('featured');
 		$product->quantity = $request->quantity;
-		$product->user_id = auth()->user()->id;
-		// $product->user_id = 1;
+		$product->user_id = \Auth::user()->id;
 
 		$product->save();
 
@@ -44,6 +43,7 @@ class ProductsController extends Controller
 		$product = Products::findOrFail($id);
 
 		// Todo: validation
+		$validated = $request->validated();
 
 		$product->title = $request->title;
 		$product->image = $request->image;
@@ -51,8 +51,7 @@ class ProductsController extends Controller
 		$product->description = $request->description;
 		$product->featured = $request->has('featured');
 		$product->quantity = $request->quantity;
-		$product->user_id = auth()->user()->id;
-		// $product->user_id = 1;
+		$product->user_id = \Auth::user()->id;
 
 		$product->save();
 

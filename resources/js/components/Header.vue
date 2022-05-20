@@ -4,7 +4,7 @@
 	import { useApi } from '../hooks'
 
 	const store = useStore()
-	const { execute } = useApi('/logout')
+	const { execute } = useApi()
 	
 	const loggedIn = computed(() => {
 		return store.getters.authenticated
