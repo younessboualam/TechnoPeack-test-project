@@ -63,11 +63,10 @@ const store = createStore({
 
 		register({ commit }, data) {
 			return axios.post('/api/register', data).then(({ data })=>{
-				console.log(data)
 				commit('SET_USER', data.user)
 				commit('SET_AUTHENTICATED', data.access_token)
 
-				// router.push({ name:'Products.List' })
+				router.push({ name:'Products.List' })
 			}).catch(({response:{ data }})=>{
 				commit('LOGOUT')
 			})

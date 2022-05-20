@@ -21424,9 +21424,11 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
       var commit = _ref5.commit;
       return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref6) {
         var data = _ref6.data;
-        console.log(data);
         commit('SET_USER', data.user);
-        commit('SET_AUTHENTICATED', data.access_token); // router.push({ name:'Products.List' })
+        commit('SET_AUTHENTICATED', data.access_token);
+        _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
+          name: 'Products.List'
+        });
       })["catch"](function (_ref7) {
         var data = _ref7.response.data;
         commit('LOGOUT');

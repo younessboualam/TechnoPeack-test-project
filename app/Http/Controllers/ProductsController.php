@@ -19,6 +19,11 @@ class ProductsController extends Controller
 		$product = new Products;
 
 		// Todo: validation
+		$validated = $request->validated();
+
+		if (!$validated) {
+
+		}
 
 		$product->title = $request->title;
 		$product->image = $request->image;

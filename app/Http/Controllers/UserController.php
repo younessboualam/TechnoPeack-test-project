@@ -34,9 +34,9 @@ class UserController extends Controller
 
 	function register(Request $request) {
 		$validator = Validator::make($request->all(), [
-			'name' => 'required|string|max:255',
-			'email' => 'required|email|unique:users|max:255',
-			'password' => 'required|min:10',
+			'name' => 'required|string',
+			'email' => 'required|email|unique:users',
+			'password' => 'required|min:8',
 		]);
 		// Return errors if validation error occur.
 		if ($validator->fails()) {
@@ -48,9 +48,9 @@ class UserController extends Controller
 		}
 
 		$user = User::create([
-				'name' => $post_data['name'],
-				'email' => $post_data['email'],
-				'password' => Hash::make($post_data['password']),
+			'name' => $request->name,
+			'email' => $request->email,
+			'password' => Hash::make($request->password),
 		]);
 
 		$token = $user->createToken('authToken')->plainTextToken;
