@@ -21219,6 +21219,7 @@ function useApi() {
   var hasError = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
   var client = axios__WEBPACK_IMPORTED_MODULE_1___default().create({
     baseURL: "/api",
+    withCredentials: true,
     headers: {
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
