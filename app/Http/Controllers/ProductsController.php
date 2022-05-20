@@ -7,38 +7,24 @@ use App\Models\Products;
 
 class ProductsController extends Controller
 {
-
-	// function details(Request $request) { 
-	// 	$user = auth()->user();
-
-	// 	$token = $user->createToken('authToken')->plainTextToken;
-
-	// 	return $client->request('POST', '/api/user', [
-	// 		'headers' => [
-	// 			'Authorization' => 'Bearer '.$token,
-	// 			'Accept' => 'application/json',
-	// 		],
-	// 	]);
-	// }
-
 	function index() {
-		dd(auth()->user());
-		$products = auth()->user()->products()->get();
+		// $products = auth()->user()->products()->get();
+		$products = Products::orderBy('created_at', 'desc')->get();
 
 		return response()->json($products);
 	}
 
 	function store(Request $request) {
-		$product = new Product;
+		$product = new Products;
 
 		$product->title = $request->product_name;
 		$product->image = $request->product_image;
 		$product->price = $request->product_price;
 		$product->description = $request->product_description;
 		$product->featured = $request->has('product_featured');
-		$product->old_price = $request->product_old_price;
 		$product->quantity = $request->product_quantity;
-		$product->user_id = auth()->user()->id;
+		// $product->user_id = auth()->user()->id;
+		$product->user_id = 1;
 
 		$product->save();
 
@@ -46,22 +32,22 @@ class ProductsController extends Controller
 	}
 
 	public function edit($id) {
-		$product = Product::findOrFail($id);
+		$product = Products::findOrFail($id);
 
 		return response()->json($product);
 	}
 
 	public function update(Request $request, $id) {
-		$product = Product::findOrFail($id);
+		$product = Products::findOrFail($id);
 
-		$product->title = $request->product_name;
-		$product->image = $request->product_image;
-		$product->price = $request->product_price;
-		$product->description = $request->product_description;
-		$product->featured = $request->has('product_featured');
-		$product->old_price = $request->product_old_price;
-		$product->quantity = $request->product_quantity;
-		$product->user_id = auth()->user()->id;
+		$product->title = $request->title;
+		$product->image = $request->image;
+		$product->price = $request->price;
+		$product->description = $request->description;
+		$product->featured = $request->has('featured');
+		$product->quantity = $request->quantity;
+		// $product->user_id = auth()->user()->id;
+		$product->user_id = 1;
 
 		$product->save();
 
@@ -69,7 +55,7 @@ class ProductsController extends Controller
 	}
 
 	public function destroy($id) {
-		$product = Product::find($id);
+		$product = Products::find($id);
 		$product->delete();
 
 		return response()->json('Successfully deleted');

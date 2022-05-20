@@ -1,20 +1,21 @@
 <script setup>
-	import { ref } from 'vue'
+	import { ref, onMounted } from 'vue'
 	import { useApi } from '../../hooks'
 
 	const { execute, results, isLoading, hasError } = useApi()
 
 	function deleteProduct (id) {
 		execute({
-			url: '/products',
-			method: 'delete',
-			params: { id }
+			url: `/products/delete/${ id }`,
+			method: 'delete'
+		})
+
+		results.value = results.value.filter((el) => {
+			return el.id !== id
 		})
 	}
 
-	execute({
-		url: '/products'
-	})
+	onMounted(() => execute({ url: '/products' }))
 </script>
 
 <template>
@@ -50,7 +51,7 @@
 					<td class="p-2">Loading ...</td>
 				</tr>
 
-				<tr v-else v-for="product in results" class="odd:bg-slate-100">
+				<tr v-else v-for="product in results" :key="product.id" class="odd:bg-slate-100">
 					<td class="p-2">{{ product.id }}</td>
 					<td class="p-2">
 						<img class="w-10" :src="`images/products/${ product.image }`" alt="">
@@ -60,9 +61,9 @@
 					<td class="p-2">{{ product.quantity }}</td>
 
 					<td class="flex">
-						<a href="{{ route('products.edit', ['product' => product.id]) }}" class="text-sky-500">
+						<router-link :to="{ name: 'Products.Edit', params: { id: product.id }}" class="text-sky-500">
 							<span class="ml-2">Edit</span>
-						</a>
+						</router-link>
 						
 						<span class="mx-3">|</span>
 

@@ -69,8 +69,7 @@ const store = createStore({
 
 				// router.push({ name:'Products.List' })
 			}).catch(({response:{ data }})=>{
-				commit('SET_USER', {})
-				commit('SET_AUTHENTICATED', null)
+				commit('LOGOUT')
 			})
 		},
 

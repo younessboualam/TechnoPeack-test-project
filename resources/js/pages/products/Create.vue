@@ -1,19 +1,28 @@
 <script setup>
-	import axios from 'axios'
 	import { ref } from 'vue'
+
 	import { useRouter } from 'vue-router'
+	import { useApi } from '../../hooks'
+
+	const { execute, results, isLoading, hasError } = useApi()
+
 
 	const image = ref(null)
 	const product = ref({})
 	const router = useRouter()
 
 	function storeProduct () {
-		axios.post('/products', product.value).then(respons => {
-			router.push('/')
+		execute({
+			url: '/products',
+			method: 'post',
+			data: product.value
 		})
+
+		router.push({ name: 'Products.List' })
 	}
 
 	function prevewImage ({ target }) {
+		product.value.product_image = target.files[0].name
 		image.value.src = URL.createObjectURL(target.files[0])
 	}
 </script>
@@ -36,16 +45,9 @@
 					<input id="product-title" type="file" @change="prevewImage" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
 				</div>
 
-				<div class="flex mt-3 gap-10">
-					<div class="w-full">
-						<label for="product-price">Product old price</label>
-						<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_old_price">
-					</div>
-
-					<div class="w-full">
-						<label for="product-price">Product price</label>
-						<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_price">
-					</div>
+				<div class="mt-3">
+					<label for="product-price">Product price</label>
+					<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_price">
 				</div>
 
 				<div class="mt-3">

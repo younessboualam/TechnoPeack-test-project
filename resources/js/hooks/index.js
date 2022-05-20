@@ -10,18 +10,17 @@ export function useApi () {
 		baseURL: "/api",
 		headers: {
 			'X-Requested-With': 'XMLHttpRequest',
-			'accept': 'application/json',
+			'Accept': 'application/json',
 			'Authorization': 'Bearer ' + localStorage.getItem('token')
 		}
 	})
 
 	function execute ({
-		url, method = 'get', params = {}, data = {}
+		url, method = 'get', data = {}
 	}) {
 		client({
 			method,
 			url,
-			params,
 			data
 		}).then(({ data }) => {
 			results.value = data
