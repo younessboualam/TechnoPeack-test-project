@@ -16,12 +16,13 @@ export function useApi () {
 	})
 
 	function execute ({
-		url, method = 'get', data = {}
+		url, method = 'get', data = {}, params = {}
 	}) {
 		client({
 			method,
 			url,
-			data
+			data,
+			params
 		}).then(({ data }) => {
 			results.value = data
 			isLoading.value = false

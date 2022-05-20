@@ -15,10 +15,19 @@
 		})
 	}
 
+	function nextPage (url) {
+		execute({
+			url
+		})
+	}
+
 	onMounted(() => execute({ url: '/products' }))
 </script>
 
 <template>
+<!-- 	<pre>
+		{{ results }}
+	</pre> -->
 	<section class="max-w-7xl mx-auto px-4">
 		<h1 class="text-4xl flex items-center">
 			Products lists
@@ -51,7 +60,7 @@
 					<td class="p-2">Loading ...</td>
 				</tr>
 
-				<tr v-else v-for="product in results" :key="product.id" class="odd:bg-slate-100">
+				<tr v-else v-for="product in results.data" :key="product.id" class="odd:bg-slate-100">
 					<td class="p-2">{{ product.id }}</td>
 					<td class="p-2">
 						<img class="w-10" :src="`images/products/${ product.image }`" alt="">
@@ -72,5 +81,21 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<div class="mt-4">
+			<ul class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+				<li
+					v-for="{ url, label, active } in results.links" href="#"
+					:class="[
+						'bg-white cursor-pointer border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
+						{ 'bg-indigo-50 border z-10 border-indigo-500 text-indigo-600': active }
+					]"
+
+					@click="nextPage(url)"
+				>
+					<span v-html="label"></span>
+				</li>
+			</ul>
+		</div>
 	</section>
 </template>

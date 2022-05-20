@@ -9,7 +9,7 @@ class ProductsController extends Controller
 {
 	function index() {
 		// $products = auth()->user()->products()->get();
-		$products = Products::orderBy('created_at', 'desc')->get();
+		$products = Products::paginate(6);
 
 		return response()->json($products);
 	}
