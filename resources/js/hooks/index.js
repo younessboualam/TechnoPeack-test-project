@@ -19,7 +19,7 @@ export function useApi () {
 	function execute ({
 		url, method = 'get', data = {}, params = {}
 	}) {
-		client({
+		return client({
 			method,
 			url,
 			data,

@@ -22,7 +22,7 @@
 	}
 
 	function prevewImage ({ target }) {
-		product.value.product_image = target.files[0].name
+		product.value.image = target.files[0].name
 		image.value.src = URL.createObjectURL(target.files[0])
 	}
 </script>

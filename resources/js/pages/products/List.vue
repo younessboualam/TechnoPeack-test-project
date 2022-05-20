@@ -10,7 +10,7 @@
 			method: 'delete'
 		})
 
-		results.value = results.value.filter((el) => {
+		results.value.data = results.value.data.filter((el) => {
 			return el.id !== id
 		})
 	}
@@ -25,9 +25,6 @@
 </script>
 
 <template>
-<!-- 	<pre>
-		{{ results }}
-	</pre> -->
 	<section class="max-w-7xl mx-auto px-4">
 		<h1 class="text-4xl flex items-center">
 			Products lists

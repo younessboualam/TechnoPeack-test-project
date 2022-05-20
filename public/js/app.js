@@ -19965,7 +19965,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function prevewImage(_ref2) {
       var target = _ref2.target;
-      product.value.product_image = target.files[0].name;
+      product.value.image = target.files[0].name;
       image.value.src = URL.createObjectURL(target.files[0]);
     }
 
@@ -20096,7 +20096,7 @@ __webpack_require__.r(__webpack_exports__);
         url: "/products/delete/".concat(id),
         method: 'delete'
       });
-      results.value = results.value.filter(function (el) {
+      results.value.data = results.value.data.filter(function (el) {
         return el.id !== id;
       });
     }
@@ -21087,7 +21087,7 @@ var _hoisted_28 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \t<pre>\n\t\t{{ results }}\n\t</pre> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'Products.Store'
     },
@@ -21169,9 +21169,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_27);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])])], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  );
+  ))])])]);
 }
 
 /***/ }),
@@ -21235,7 +21233,7 @@ function useApi() {
         data = _ref$data === void 0 ? {} : _ref$data,
         _ref$params = _ref.params,
         params = _ref$params === void 0 ? {} : _ref$params;
-    client({
+    return client({
       method: method,
       url: url,
       data: data,
