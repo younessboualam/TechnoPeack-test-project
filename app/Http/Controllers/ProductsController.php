@@ -9,8 +9,7 @@ use App\Models\Products;
 class ProductsController extends Controller
 {
 	function index() {
-		// $products = auth()->user()->products()->paginate(6)->get();
-		$products = Products::paginate(6);
+		$products = \Auth::user()->products()->paginate(6);
 
 		return response()->json($products);
 	}
@@ -20,10 +19,6 @@ class ProductsController extends Controller
 
 		// Todo: validation
 		$validated = $request->validated();
-
-		if (!$validated) {
-
-		}
 
 		$product->title = $request->title;
 		$product->image = $request->image;
