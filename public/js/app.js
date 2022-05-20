@@ -21332,11 +21332,10 @@ var routes = [{
   meta: {
     requiresAuth: true
   }
-} // {
-// 	path: '/:pathMatch(.*)*',
-// 	redirect: 'Login'
-// }
-];
+}, {
+  path: '/:pathMatch(.*)*',
+  redirect: 'Login'
+}];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.createWebHistory)(),
   routes: routes
