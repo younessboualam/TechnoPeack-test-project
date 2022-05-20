@@ -57,6 +57,10 @@
 					<td class="p-2">Loading ...</td>
 				</tr>
 
+				<tr v-else-if="results.data.length == 0">
+					<td class="p-2">No product available</td>
+				</tr>
+
 				<tr v-else v-for="product in results.data" :key="product.id" class="odd:bg-slate-100">
 					<td class="p-2">{{ product.id }}</td>
 					<td class="p-2">
