@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Login from '../pages/Login.vue'
 import Register from '../pages/Register.vue'

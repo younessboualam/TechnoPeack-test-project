@@ -37,7 +37,7 @@
 			<form class="mt-5 col-span-2" @submit.prevent="storeProduct">
 				<div class="">
 					<label for="product-title">Product title</label>
-					<input id="product-title" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_name">
+					<input id="product-title" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.title">
 				</div>
 
 				<div class="mt-3">
@@ -47,21 +47,21 @@
 
 				<div class="mt-3">
 					<label for="product-price">Product price</label>
-					<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_price">
+					<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.price">
 				</div>
 
 				<div class="mt-3">
 					<label for="product-quantity">Product quantity</label>
-					<input id="product-quantity" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_quantity">
+					<input id="product-quantity" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.quantity">
 				</div>
 
 				<div class="mt-3">
 					<label for="product-quantity">Product description</label>
-					<textarea id="product-quantity" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.product_description"></textarea>
+					<textarea id="product-quantity" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.description"></textarea>
 				</div>
 
 				<div class="mt-3 flex items-center">
-					<input type="checkbox" id="product-quantity" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" v-model="product.product_featured">
+					<input type="checkbox" id="product-quantity" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" v-model="product.featured">
 					<label for="product-quantity" class="ml-4">featured product</label>
 				</div>
 

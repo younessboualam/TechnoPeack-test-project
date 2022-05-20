@@ -20718,11 +20718,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.product.product_name = $event;
+      return $setup.product.title = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.product_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "product-title",
     type: "file",
     onChange: $setup.prevewImage,
@@ -20734,37 +20734,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "number",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $setup.product.product_price = $event;
+      return $setup.product.price = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.product_price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "product-quantity",
     type: "number",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $setup.product.product_quantity = $event;
+      return $setup.product.quantity = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.product_quantity]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.quantity]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     id: "product-quantity",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $setup.product.product_description = $event;
+      return $setup.product.description = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.product_description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
     id: "product-quantity",
     "class": "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $setup.product.product_featured = $event;
+      return $setup.product.featured = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.product.product_featured]]), _hoisted_17]), _hoisted_18], 40
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.product.featured]]), _hoisted_17]), _hoisted_18], 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", _hoisted_19, null, 512
   /* NEED_PATCH */
@@ -21276,7 +21276,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_products_List_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/products/List.vue */ "./resources/js/pages/products/List.vue");
 /* harmony import */ var _pages_products_Create_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/products/Create.vue */ "./resources/js/pages/products/Create.vue");
 /* harmony import */ var _pages_products_Edit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/products/Edit.vue */ "./resources/js/pages/products/Edit.vue");
-
 
 
 

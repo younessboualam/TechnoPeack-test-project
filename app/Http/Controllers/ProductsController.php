@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Products;
 
@@ -14,17 +15,17 @@ class ProductsController extends Controller
 		return response()->json($products);
 	}
 
-	function store(Request $request) {
+	function store(ProductRequest $request) {
 		$product = new Products;
 
 		// Todo: validation
 
-		$product->title = $request->product_name;
-		$product->image = $request->product_image;
-		$product->price = $request->product_price;
-		$product->description = $request->product_description;
-		$product->featured = $request->has('product_featured');
-		$product->quantity = $request->product_quantity;
+		$product->title = $request->title;
+		$product->image = $request->image;
+		$product->price = $request->price;
+		$product->description = $request->description;
+		$product->featured = $request->has('featured');
+		$product->quantity = $request->quantity;
 		$product->user_id = auth()->user()->id;
 		// $product->user_id = 1;
 
@@ -39,7 +40,7 @@ class ProductsController extends Controller
 		return response()->json($product);
 	}
 
-	public function update(Request $request, $id) {
+	public function update(ProductRequest $request, $id) {
 		$product = Products::findOrFail($id);
 
 		// Todo: validation
