@@ -81,17 +81,22 @@
 
 		<div class="mt-4">
 			<ul class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-				<li
-					v-for="{ url, label, active } in results.links" href="#"
-					:class="[
-						'bg-white cursor-pointer border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
-						{ 'bg-indigo-50 border z-10 border-indigo-500 text-indigo-600': active }
-					]"
-
-					@click="nextPage(url)"
+				<template 
+					v-for="{ url, label, active } in results.links"
+					:key="label"
 				>
-					<span v-html="label"></span>
-				</li>
+					<li
+						v-if="url"
+						:class="[
+							'bg-white cursor-pointer border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
+							{ 'bg-indigo-50 border z-10 border-indigo-500 text-indigo-600': active }
+						]"
+
+						@click="nextPage(url)"
+					>
+						<span v-html="label"></span>
+					</li>
+				</template>
 			</ul>
 		</div>
 	</section>
