@@ -8,8 +8,8 @@ use App\Models\Products;
 class ProductsController extends Controller
 {
 	function index() {
-		// $products = auth()->user()->products()->get();
-		$products = Products::paginate(6);
+		$products = auth()->user()->products()->paginate(6)->get();
+		// $products = Products::paginate(6);
 
 		return response()->json($products);
 	}

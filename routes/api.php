@@ -18,8 +18,6 @@ Route::middleware('auth:sanctum')->group(function() {
 		return $request->user();
 	});
 
-});
-
 	Route::group([
 		'prefix' => 'products',
 	], function () {
@@ -29,3 +27,4 @@ Route::middleware('auth:sanctum')->group(function() {
 		Route::put('/edit/{id}', [ProductsController::class, 'update']);
 		Route::delete('/delete/{id}', [ProductsController::class, 'destroy']);
 	});
+});
