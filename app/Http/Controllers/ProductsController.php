@@ -17,14 +17,16 @@ class ProductsController extends Controller
 	function store(Request $request) {
 		$product = new Products;
 
+		// Todo: validation
+
 		$product->title = $request->product_name;
 		$product->image = $request->product_image;
 		$product->price = $request->product_price;
 		$product->description = $request->product_description;
 		$product->featured = $request->has('product_featured');
 		$product->quantity = $request->product_quantity;
-		// $product->user_id = auth()->user()->id;
-		$product->user_id = 1;
+		$product->user_id = auth()->user()->id;
+		// $product->user_id = 1;
 
 		$product->save();
 
@@ -40,14 +42,16 @@ class ProductsController extends Controller
 	public function update(Request $request, $id) {
 		$product = Products::findOrFail($id);
 
+		// Todo: validation
+
 		$product->title = $request->title;
 		$product->image = $request->image;
 		$product->price = $request->price;
 		$product->description = $request->description;
 		$product->featured = $request->has('featured');
 		$product->quantity = $request->quantity;
-		// $product->user_id = auth()->user()->id;
-		$product->user_id = 1;
+		$product->user_id = auth()->user()->id;
+		// $product->user_id = 1;
 
 		$product->save();
 
