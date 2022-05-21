@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Validator;
+// use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Products;
 
@@ -14,21 +15,30 @@ class ProductsController extends Controller
 		return response()->json($products);
 	}
 
-	function store(ProductRequest $request) {
-		$product = new Products;
+	function store(Request $request) {
+		$validator = Validator::make($request->all(), [
+	      'title' => 'required',
+   	   'price' => 'required|numeric',
+      	'quantity' => 'required|numeric'
+		]);
 
-		// Todo: validation
-		$validated = $request->validated();
+		if ($validator->fails()) {
+			$errors = $validator->errors();
+			
+			return response()->json([
+				'errors' => $errors
+			]);
+		}
 
-		$product->title = $request->title;
-		$product->image = $request->image;
-		$product->price = $request->price;
-		$product->description = $request->description;
-		$product->featured = $request->has('featured');
-		$product->quantity = $request->quantity;
-		$product->user_id = \Auth::user()->id;
-
-		$product->save();
+		$product = Products::create([
+			'title' => $request->title,
+			'image' => $request->image,
+			'price' => $request->price,
+			'description' => $request->description,
+			'featured' => $request->has('featured'),
+			'quantity' => $request->quantity,
+			'user_id' => \Auth::user()->id
+		]);
 
 		return response()->json('Successfully added');
 	}
@@ -39,12 +49,22 @@ class ProductsController extends Controller
 		return response()->json($product);
 	}
 
-	public function update(ProductRequest $request, $id) {
+	public function update(Request $request, $id) {
+		$validator = Validator::make($request->all(), [
+	      'title' => 'required',
+   	   'price' => 'required|numeric',
+      	'quantity' => 'required|numeric'
+		]);
+
+		if ($validator->fails()) {
+			$errors = $validator->errors();
+			
+			return response()->json([
+				'errors' => $errors
+			]);
+		}
+
 		$product = Products::findOrFail($id);
-
-		// Todo: validation
-		$validated = $request->validated();
-
 		$product->title = $request->title;
 		$product->image = $request->image;
 		$product->price = $request->price;

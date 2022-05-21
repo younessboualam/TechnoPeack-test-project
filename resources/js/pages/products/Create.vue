@@ -6,14 +6,13 @@
 
 	const { execute, results, isLoading, hasError } = useApi()
 
-
 	const image = ref(null)
 	const product = ref({})
 	const router = useRouter()
 
 	function storeProduct () {
 		execute({
-			url: '/products',
+			url: '/products/store',
 			method: 'post',
 			data: product.value
 		})
@@ -37,7 +36,7 @@
 			<form class="mt-5 col-span-2" @submit.prevent="storeProduct">
 				<div class="">
 					<label for="product-title">Product title</label>
-					<input id="product-title" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.title">
+					<input id="product-title" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.title">
 				</div>
 
 				<div class="mt-3">
@@ -47,12 +46,12 @@
 
 				<div class="mt-3">
 					<label for="product-price">Product price</label>
-					<input id="product-price" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.price">
+					<input id="product-price" required type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.price">
 				</div>
 
 				<div class="mt-3">
 					<label for="product-quantity">Product quantity</label>
-					<input id="product-quantity" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.quantity">
+					<input id="product-quantity" required type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" v-model="product.quantity">
 				</div>
 
 				<div class="mt-3">

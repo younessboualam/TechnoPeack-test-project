@@ -11,8 +11,7 @@ class ProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,10 +20,9 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'title' => 'required|min:10',
+            'title' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric'
         ]; 

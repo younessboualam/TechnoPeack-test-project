@@ -14,17 +14,13 @@ Route::controller(UserController::class)->group(function(){
 Route::middleware('auth:sanctum')->group(function() {
 	Route::post('/logout', [UserController::class, 'logout']);
 
-	Route::get('/user', function (Request $request) {
-		return $request->user();
-	});
-
 	Route::group([
 		'prefix' => 'products',
 	], function () {
 		Route::get('/', [ProductsController::class, 'index']);
-		Route::post('/', [ProductsController::class, 'store']);
-		Route::get('/{id}', [ProductsController::class, 'edit']);
-		Route::put('/edit/{id}', [ProductsController::class, 'update']);
+		Route::post('/store', [ProductsController::class, 'store']);
+		Route::get('/edit/{id}', [ProductsController::class, 'edit']);
+		Route::put('/update/{id}', [ProductsController::class, 'update']);
 		Route::delete('/delete/{id}', [ProductsController::class, 'destroy']);
 	});
 });

@@ -1,5 +1,5 @@
 <script setup>
-	import { ref } from 'vue'
+	import { ref, computed } from 'vue'
 
 	import { useStore } from 'vuex'
 	import { useRouter } from 'vue-router'
@@ -11,6 +11,8 @@
 	const user = ref({})
 	const isProcessing = ref(false)
 	
+	const errors = computed(() => store.getters.errors)
+
 	const store = useStore()
 	const router = useRouter()
 
@@ -59,6 +61,8 @@
 						<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password? </a>
 					</div>
 				</div>
+
+				<p v-if="errors" class="text-red-500">{{ errors }}</p>
 
 				<div>
 					<button :disabled="isProcessing" type="submit" class="flex items-center group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

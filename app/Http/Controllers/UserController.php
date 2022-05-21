@@ -17,9 +17,7 @@ class UserController extends Controller
 		];
 
 		if (!Auth::attempt($credentials)) {
-			return response()->json([
-				'message' => 'Invalid login details'
-			], 401);
+			return response()->json(['errors' => 'Invalid login credentials']);
 		}
 
 		$user = User::where('email', $request['email'])->firstOrFail();
@@ -34,7 +32,7 @@ class UserController extends Controller
 
 	function register(Request $request) {
 		$validator = Validator::make($request->all(), [
-			'name' => 'required|string',
+			'name' => 'required|string|min:8',
 			'email' => 'required|email|unique:users',
 			'password' => 'required|min:8',
 		]);
@@ -43,8 +41,8 @@ class UserController extends Controller
 			$errors = $validator->errors();
 			
 			return response()->json([
-				'error' => $errors
-			], 400);
+				'errors' => $errors
+			]);
 		}
 
 		$user = User::create([
@@ -63,26 +61,7 @@ class UserController extends Controller
 	}
 
 	public function logout(Request $request) {
-		auth()->user()->tokens()->delete();
+		Auth::user()->tokens()->delete();
 		return response()->json('Logged out');
-	}
-
-
-	public function details(Request $request) { 
-		$user = Auth::user(); 
-
-		//  'headers' => [
-		//  'Accept' => 'application/json',
-		//  'Authorization' => 'Bearer '.$accessToken,
-		// ],
-		$token = $request->post('/oauth/token', [
-			'content-type' => 'application/json',
-			'Accept' => 'application/json',
-			'Authorization' => 'Bearer '.'mahgf1234567890',
-		]);
-		//$token=$request->header('Authorization');
-
-
-		return response()->json(['success' => $user,'token' => $token], $this-> successStatus); 
 	}
 }

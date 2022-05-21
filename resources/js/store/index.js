@@ -5,12 +5,17 @@ import { createStore } from 'vuex'
 const store = createStore({
 	state: {
 		authenticated: false,
+		errors: '',
 		user: {}
 	},
 
 	getters: {
 		authenticated(state){
 			return state.authenticated
+		},
+		
+		errors(state){
+			return state.errors
 		},
 		
 		user(state){
@@ -38,6 +43,10 @@ const store = createStore({
 			state.user = value
 		},
 
+		SET_ERRORS (state, errors) {
+			state.errors = errors
+		},
+
 		LOGOUT (state) {
 			state.user = {}
 			state.authenticated = false
@@ -50,7 +59,12 @@ const store = createStore({
 		},
 
 		login({ commit }, credentials) {
-			return axios.post('/api/login', credentials).then(({ data })=>{
+			return axios.post('/api/login', credentials).then(({ data }) => {
+				if ('errors' in data) {
+					commit('SET_ERRORS', data.errors)
+					return
+				}
+
 				commit('SET_USER', data.user)
 				commit('SET_AUTHENTICATED', data.access_token)
 
@@ -62,6 +76,11 @@ const store = createStore({
 
 		register({ commit }, data) {
 			return axios.post('/api/register', data).then(({ data })=>{
+				if ('errors' in data) {
+					commit('SET_ERRORS', data.errors)
+					return
+				}
+
 				commit('SET_USER', data.user)
 				commit('SET_AUTHENTICATED', data.access_token)
 

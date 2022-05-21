@@ -19835,6 +19835,9 @@ __webpack_require__.r(__webpack_exports__);
 
     var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
     var isProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.getters.errors;
+    });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
 
@@ -19853,10 +19856,12 @@ __webpack_require__.r(__webpack_exports__);
       hasError: hasError,
       user: user,
       isProcessing: isProcessing,
+      errors: errors,
       store: store,
       router: router,
       login: login,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       useStore: vuex__WEBPACK_IMPORTED_MODULE_2__.useStore,
       useRouter: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter,
       useApi: _hooks__WEBPACK_IMPORTED_MODULE_1__.useApi
@@ -19895,6 +19900,9 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.getters.errors;
+    });
     var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
     var isProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
@@ -19909,12 +19917,14 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     var __returned__ = {
+      errors: errors,
       user: user,
       isProcessing: isProcessing,
       store: store,
       router: router,
       register: register,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       axios: (axios__WEBPACK_IMPORTED_MODULE_1___default()),
       useStore: vuex__WEBPACK_IMPORTED_MODULE_2__.useStore,
       useRouter: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter
@@ -19963,7 +19973,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function storeProduct() {
       execute({
-        url: '/products',
+        url: '/products/store',
         method: 'post',
         data: product.value
       });
@@ -20033,7 +20043,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function updateProduct() {
       execute({
-        url: "/products/edit/".concat(id),
+        url: "/products/update/".concat(id),
         method: 'put',
         data: product.value
       });
@@ -20043,7 +20053,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     execute({
-      url: "/products/".concat(id)
+      url: "/products/edit/".concat(id)
     });
 
     function chooseImage(_ref2) {
@@ -20355,8 +20365,12 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_13 = ["disabled"];
-var _hoisted_14 = {
+var _hoisted_13 = {
+  key: 0,
+  "class": "text-red-500"
+};
+var _hoisted_14 = ["disabled"];
+var _hoisted_15 = {
   key: 0,
   xmlns: "http://www.w3.org/2000/svg",
   "class": "h-4 w-4 animate-spin",
@@ -20366,7 +20380,7 @@ var _hoisted_14 = {
   "stroke-width": "2"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
@@ -20374,9 +20388,9 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_16 = [_hoisted_15];
+var _hoisted_17 = [_hoisted_16];
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "ml-3"
 }, "Sign in", -1
 /* HOISTED */
@@ -20419,13 +20433,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.user.remember_me]]), _hoisted_11]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.user.remember_me]]), _hoisted_11]), _hoisted_12]), $setup.errors ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: $setup.isProcessing,
     type: "submit",
     "class": "flex items-center group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-  }, [$setup.isProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_14, _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_17], 8
+  }, [$setup.isProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_18], 8
   /* PROPS */
-  , _hoisted_13)])], 40
+  , _hoisted_14)])], 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_4)])]);
 }
@@ -20510,8 +20526,14 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_11 = ["disabled"];
+var _hoisted_11 = {
+  "class": "list-disc ml-4"
+};
 var _hoisted_12 = {
+  "class": "text-red-500 text-sm"
+};
+var _hoisted_13 = ["disabled"];
+var _hoisted_14 = {
   key: 0,
   xmlns: "http://www.w3.org/2000/svg",
   "class": "h-4 w-4 animate-spin",
@@ -20521,7 +20543,7 @@ var _hoisted_12 = {
   "stroke-width": "2"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
@@ -20529,9 +20551,9 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_14 = [_hoisted_13];
+var _hoisted_16 = [_hoisted_15];
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "ml-3"
 }, "Sign up", -1
 /* HOISTED */
@@ -20577,13 +20599,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Password"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.user.password]])]), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.user.password]])]), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.errors, function (error) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error[0]), 1
+    /* TEXT */
+    );
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: $setup.isProcessing,
     type: "submit",
     "class": "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-  }, [$setup.isProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_12, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_15], 8
+  }, [$setup.isProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_14, _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_17], 8
   /* PROPS */
-  , _hoisted_11)])], 40
+  , _hoisted_13)])], 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_4)])]);
 }
@@ -20715,6 +20743,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "product-title",
     type: "text",
+    required: "",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.product.title = $event;
@@ -20730,6 +20759,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "product-price",
+    required: "",
     type: "number",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -20739,6 +20769,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.product.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "product-quantity",
+    required: "",
     type: "number",
     "class": "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -21382,11 +21413,15 @@ __webpack_require__.r(__webpack_exports__);
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
   state: {
     authenticated: false,
+    errors: '',
     user: {}
   },
   getters: {
     authenticated: function authenticated(state) {
       return state.authenticated;
+    },
+    errors: function errors(state) {
+      return state.errors;
     },
     user: function user(state) {
       return state.user;
@@ -21407,6 +21442,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
       localStorage.setItem("user", JSON.stringify(value));
       state.user = value;
     },
+    SET_ERRORS: function SET_ERRORS(state, errors) {
+      state.errors = errors;
+    },
     LOGOUT: function LOGOUT(state) {
       state.user = {};
       state.authenticated = false;
@@ -21421,6 +21459,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
       var commit = _ref2.commit;
       return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/login', credentials).then(function (_ref3) {
         var data = _ref3.data;
+
+        if ('errors' in data) {
+          commit('SET_ERRORS', data.errors);
+          return;
+        }
+
         commit('SET_USER', data.user);
         commit('SET_AUTHENTICATED', data.access_token);
         _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
@@ -21434,6 +21478,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
       var commit = _ref4.commit;
       return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref5) {
         var data = _ref5.data;
+
+        if ('errors' in data) {
+          commit('SET_ERRORS', data.errors);
+          return;
+        }
+
         commit('SET_USER', data.user);
         commit('SET_AUTHENTICATED', data.access_token);
         _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({

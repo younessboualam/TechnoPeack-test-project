@@ -11,7 +11,7 @@
 
 	function updateProduct() {
 		execute({
-			url: `/products/edit/${ id }`,
+			url: `/products/update/${ id }`,
 			method: 'put',
 			data: product.value
 		})
@@ -19,7 +19,7 @@
 		router.push({ name: 'Products.List' })
 	}
 
-	execute({ url: `/products/${ id }` })
+	execute({ url: `/products/edit/${ id }` })
 
 	function chooseImage ({ target }) {
 		product.value.image = target.files[0].name
