@@ -10,7 +10,7 @@ use App\Models\Products;
 class ProductsController extends Controller
 {
 	function index() {
-		$products = \Auth::user()->products()->paginate(6);
+		$products = \Auth::user()->products()->paginate(1);
 
 		return response()->json($products);
 	}

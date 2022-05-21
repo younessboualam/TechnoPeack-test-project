@@ -61,6 +61,7 @@ class UserController extends Controller
 	}
 
 	public function logout(Request $request) {
+		$request->session()->flush();
 		Auth::user()->tokens()->delete();
 		return response()->json('Logged out');
 	}
