@@ -21413,7 +21413,7 @@ __webpack_require__.r(__webpack_exports__);
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
   state: {
     authenticated: false,
-    errors: '',
+    errors: null,
     user: {}
   },
   getters: {

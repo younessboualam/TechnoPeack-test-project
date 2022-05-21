@@ -5,7 +5,7 @@ import { createStore } from 'vuex'
 const store = createStore({
 	state: {
 		authenticated: false,
-		errors: '',
+		errors: null,
 		user: {}
 	},
 
