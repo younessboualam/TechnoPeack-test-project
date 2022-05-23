@@ -1,25 +1,26 @@
 <script setup>
 	import { ref, computed } from 'vue'
-	import axios from 'axios'
 
 	import { useStore } from 'vuex'
-	import { useRouter } from 'vue-router'
+	import { useApi } from '@/hooks'
 
-	const errors = computed(() => store.getters.errors)
+	const store = useStore()
+	const { execute } = useApi()
 	
 	const user = ref({})
 	const isProcessing = ref(false)
 	
-	const store = useStore()
-	const router = useRouter()
-
+	const errors = computed(() => store.getters.errors)
+	
 	function register () {
 		isProcessing.value = true
 		
-		axios.get('/sanctum/csrf-cookie').then(res => {
-			store.dispatch('register', user.value)
-			isProcessing.value = false
+		execute({
+			url: '/sanctum/csrf-cookie'
 		})
+
+		isProcessing.value = false
+		store.dispatch('register', user.value)
 	}
 </script>
 

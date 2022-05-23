@@ -1,4 +1,14 @@
-const mix = require('laravel-mix');
+const path = require('path')
+const mix = require('laravel-mix')
+
+mix.webpackConfig({
+	resolve: {
+		extensions: ['.vue', '.js'],
+		alias: {
+			'@': path.join(__dirname, 'resources/js/')
+		}
+	}
+})
 
 mix.js('resources/js/app.js', 'public/js')
 	.vue()

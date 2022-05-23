@@ -10,16 +10,16 @@ use App\Models\Products;
 class ProductsController extends Controller
 {
 	function index() {
-		$products = \Auth::user()->products()->paginate(1);
+		$products = \Auth::user()->products()->paginate(9);
 
 		return response()->json($products);
 	}
 
 	function store(Request $request) {
 		$validator = Validator::make($request->all(), [
-	      'title' => 'required',
-   	   'price' => 'required|numeric',
-      	'quantity' => 'required|numeric'
+			'title' => 'required',
+			'price' => 'required|numeric',
+			'quantity' => 'required|numeric'
 		]);
 
 		if ($validator->fails()) {
@@ -44,43 +44,51 @@ class ProductsController extends Controller
 	}
 
 	public function edit($id) {
-		$product = Products::findOrFail($id);
+		$ids = explode(',', $id);
 
-		return response()->json($product);
+		$products = Products::whereIn('id', $ids)->get();
+
+		return response()->json($products);
 	}
 
-	public function update(Request $request, $id) {
-		$validator = Validator::make($request->all(), [
-	      'title' => 'required',
-   	   'price' => 'required|numeric',
-      	'quantity' => 'required|numeric'
-		]);
+	public function update(Request $request) {
 
-		if ($validator->fails()) {
-			$errors = $validator->errors();
-			
-			return response()->json([
-				'errors' => $errors
+		foreach ($request->all() as $key => $data) {
+			$validator = Validator::make($data, [
+				'title' => 'required',
+				'price' => 'required|numeric',
+				'quantity' => 'required|numeric'
 			]);
+
+			if ($validator->fails()) {
+				$errors = $validator->errors();
+				
+				return response()->json([
+					'errors' => $errors
+				]);
+			}
+
+			$product = Products::findOrFail($data['id']);
+			$product->title = $data['title'];
+			$product->image = $data['image'];
+			$product->price = $data['price'];
+			$product->description = $data['description'];
+			$product->featured = $data['featured'];
+			$product->quantity = $data['quantity'];
+			$product->user_id = \Auth::user()->id;
+
+			$product->save();
 		}
-
-		$product = Products::findOrFail($id);
-		$product->title = $request->title;
-		$product->image = $request->image;
-		$product->price = $request->price;
-		$product->description = $request->description;
-		$product->featured = $request->has('featured');
-		$product->quantity = $request->quantity;
-		$product->user_id = \Auth::user()->id;
-
-		$product->save();
 
 		return response()->json('Successfully updated');
 	}
 
 	public function destroy($id) {
-		$product = Products::find($id);
-		$product->delete();
+		$ids = explode(',', $id);
+
+		foreach ($ids as $productId) {
+			Products::find($productId)->delete();
+		}
 
 		return response()->json('Successfully deleted');
 	}

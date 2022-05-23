@@ -23,7 +23,7 @@ class ProductsFactory extends Factory
             'featured' => $this->faker->boolean(),
             'price' => $this->faker->randomFloat(2, 10, 100),
             'quantity' => $this->faker->randomDigit(),
-            'user_id' => \App\Models\User::factory()
+            'user_id' => \App\Models\User::all()->random()->id
         ];
     }
 }

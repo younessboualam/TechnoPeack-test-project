@@ -1,5 +1,5 @@
 <script setup>
-	import AppHeader from './components/Header.vue'
+	import AppHeader from '@/components/Header.vue'
 	import { useStore } from 'vuex'
 
 	const store = useStore()

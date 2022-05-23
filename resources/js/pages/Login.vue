@@ -2,19 +2,15 @@
 	import { ref, computed } from 'vue'
 
 	import { useStore } from 'vuex'
-	import { useRouter } from 'vue-router'
-
-	import { useApi } from '../hooks'
-
-	const { execute, results, hasError } = useApi()
+	import { useApi } from '@/hooks'
+	
+	const store = useStore()
+	const { execute } = useApi()
 
 	const user = ref({})
 	const isProcessing = ref(false)
 	
 	const errors = computed(() => store.getters.errors)
-
-	const store = useStore()
-	const router = useRouter()
 
 	function login () {
 		isProcessing.value = true

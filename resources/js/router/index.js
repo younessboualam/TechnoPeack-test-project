@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Login from '../pages/Login.vue'
-import Register from '../pages/Register.vue'
+import Login from '@/pages/Login.vue'
+import Register from '@/pages/Register.vue'
 
-import List from '../pages/products/List.vue'
-import Create from '../pages/products/Create.vue'
-import Edit from '../pages/products/Edit.vue'
+import Index from '@/pages/products/index'
+import Create from '@/pages/products/create'
+import Edit from '@/pages/products/edit'
 
 const routes = [{
 	path: '/',
@@ -23,7 +23,7 @@ const routes = [{
 }, {
 	path: '/products',
 	name: 'Products.List',
-	component: List,
+	component: Index,
 	meta: { requiresAuth: true }
 }, {
 	path: '/products/create',

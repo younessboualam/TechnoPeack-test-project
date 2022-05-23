@@ -38,7 +38,7 @@
 				<router-link :to="{ name: 'Register' }" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sign up</router-link>
 			</div>
 
-			<div v-else class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+			<div v-else class="flex items-center">
 				<div class="flex-shrink-0">
 					<img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
 				</div>
@@ -48,7 +48,12 @@
 					<div class="text-sm font-medium leading-none text-gray-400">{{ user?.email }}</div>
 				</div>
 
-				<button @click="logout" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Logout</button>
+				<app-button
+					@button:click="logout"
+					class="ml-8 whitespace-nowrap"
+				>
+					Logout
+				</app-button>
 			</div>
 		</div>
 	</div>
