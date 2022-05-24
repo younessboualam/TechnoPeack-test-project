@@ -5,10 +5,10 @@
 
 	import form from './form'
 
-	const { results: products, execute } = useApi()
+	const { results: products, execute, isLoading } = useApi()
 
 	const router = useRouter()
-	const { id } = useRoute().params
+	const { params: { id }} = useRoute()
 
 	function updateProduct() {
 		execute({
@@ -24,6 +24,12 @@
 
 	function chooseImage ({ target }) {
 		product.value.image = target.files[0].name
+	}
+
+	function updateOnce (value, key) {
+		products.value = products.value.map(current => {
+			return { ...current, [key]: value}
+		})
 	}
 </script>
 
@@ -44,24 +50,58 @@
 				</thead>
 
 				<tbody>
-					<tr v-for="product in products">
-						<td><app-field f-key="id" type="hidden" v-model="product.id"></app-field></td>
+					<tr v-if="isLoading">
+						<td>Loading ...</td>
+					</tr>
+
+					<tr
+						v-else
+						v-for="product in products"
+						:key="product.id"
+					>
+						<td>
+							<app-field f-key="id" type="hidden" v-model="product.id"></app-field>
+						</td>
 
 						<td class="flex items-center space-x-4">
 							<img :src="`/images/products/${ product.image }`" class="w-12 h-12">
 							<app-field f-key="image" type="file" @file:select="chooseImage"></app-field>
 						</td>
 
-						<td><app-field f-key="title" required v-model="product.title"></app-field></td>
-						<td><app-field f-key="price" required v-model="product.price"></app-field></td>
-						<td><app-field f-key="quantity" required v-model="product.quantity"></app-field></td>
-						<td><app-field f-key="description" v-model="product.description"></app-field></td>
-						<td><app-field f-key="featured" v-model="product.featured" type="checkbox"></app-field></td>
+						<td>
+							<app-field
+								@update:modelValue="(e) => updateOnce(e, 'title')"
+								f-key="title" required v-model="product.title"></app-field>
+						</td>
+						
+						<td>
+							<app-field
+								@update:modelValue="(e) => updateOnce(e, 'price')"
+								f-key="price" required v-model="product.price"></app-field>
+						</td>
+						
+						<td>
+							<app-field
+								@update:modelValue="(e) => updateOnce(e, 'quantity')"
+								f-key="quantity" required v-model="product.quantity"></app-field>
+						</td>
+						
+						<td>
+							<app-field
+								@update:modelValue="(e) => updateOnce(e, 'description')"
+								f-key="description" v-model="product.description"></app-field>
+						</td>
+						
+						<td>
+							<app-field
+								@update:modelValue="(e) => updateOnce(e, 'featured')"
+								f-key="featured" v-model="product.featured" type="checkbox"></app-field>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<button class="mt-6 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit">Update</button>
+			<app-button class="mt-6" type="submit">Update</app-button>
 		</form>
 	</section>
 </template>

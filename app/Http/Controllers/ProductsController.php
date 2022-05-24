@@ -40,7 +40,9 @@ class ProductsController extends Controller
 			'user_id' => \Auth::user()->id
 		]);
 
-		return response()->json('Successfully added');
+		return response()->json([
+			'message' => 'Successfully added'
+		]);
 	}
 
 	public function edit($id) {
@@ -49,6 +51,14 @@ class ProductsController extends Controller
 		$products = Products::whereIn('id', $ids)->get();
 
 		return response()->json($products);
+	}
+
+	public function inlineEdit(Request $request, $id) {
+		$pr = Products::where('id', $id)->update($request->all());
+
+		return response()->json([
+			'message' => 'Successfully updated'
+		]);
 	}
 
 	public function update(Request $request) {
@@ -80,7 +90,9 @@ class ProductsController extends Controller
 			$product->save();
 		}
 
-		return response()->json('Successfully updated');
+		return response()->json([
+			'message' => 'Successfully updated'
+		]);
 	}
 
 	public function destroy($id) {
@@ -90,6 +102,8 @@ class ProductsController extends Controller
 			Products::find($productId)->delete();
 		}
 
-		return response()->json('Successfully deleted');
+		return response()->json([
+			'message' => 'Successfully deleted'
+		]);
 	}
 }

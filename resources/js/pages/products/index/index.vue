@@ -29,6 +29,20 @@
 		})
 	}
 
+	function updateCol ({ target }) {
+		const id = target.parentElement.dataset.id,
+				key = target.dataset.col,
+				value = target.textContent
+
+		execute({
+			url: `/products/update/${ id }`,
+			method: 'put',
+			data: {
+				[key]: value 
+			}
+		})
+	}
+
 	function nextPage (url) {
 		execute({
 			url
@@ -84,7 +98,13 @@
 					<td class="p-2">No product available</td>
 				</tr>
 
-				<tr v-else v-for="product in results.data" :key="product.id" class="odd:bg-slate-100">
+				<tr
+					v-else
+					v-for="product in results.data"
+					:key="product.id"
+					:data-id="product.id"
+					class="odd:bg-slate-100"
+				>
 					<td class="p-2">
 						<input v-model="selectedIDs" :value="product.id" type="checkbox">
 					</td>
@@ -93,9 +113,9 @@
 						<img class="w-10" :src="`images/products/${ product.image }`" alt="">
 					</td>
 
-					<td class="p-2">{{ product.title }}</td>
-					<td class="p-2">{{ product.price }}</td>
-					<td class="p-2">{{ product.quantity }}</td>
+					<td class="p-2" @blur="updateCol" data-col="title" contenteditable>{{ product.title }}</td>
+					<td class="p-2" @blur="updateCol" data-col="price" contenteditable>{{ product.price }}</td>
+					<td class="p-2" @blur="updateCol" data-col="quantity" contenteditable>{{ product.quantity }}</td>
 				</tr>
 			</tbody>
 		</table>

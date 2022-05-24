@@ -6,10 +6,11 @@
 	import form from './form'
 
 	const { execute, results } = useApi()
+	const router = useRouter()
 
+	const dataForm = ref(new FormData())
 	const image = ref(null)
 	const product = ref({})
-	const router = useRouter()
 
 	function storeProduct () {
 		execute({
@@ -23,6 +24,8 @@
 
 	function prevewImage ({ target }) {
 		product.value.image = target.files[0].name
+    	dataForm.value.append('image', target.files[0].name)
+    	
 		image.value.src = URL.createObjectURL(target.files[0])
 	}
 </script>
@@ -36,6 +39,7 @@
 		<div class="grid grid-cols-4 gap-10">
 			<form
 				class="mt-5 col-span-2"
+				enctype="multipart/form-data"
 				@submit.prevent="storeProduct"
 			>
 				<app-field

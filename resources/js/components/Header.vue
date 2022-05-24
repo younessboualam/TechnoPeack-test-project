@@ -44,8 +44,8 @@
 				</div>
 		
 				<div class="ml-3">
-					<div class="text-base font-medium leading-none">{{ user?.name }}</div>
-					<div class="text-sm font-medium leading-none text-gray-400">{{ user?.email }}</div>
+					<div class="text-base font-medium leading-none">{{ user.name }}</div>
+					<div class="text-sm font-medium leading-none text-gray-400">{{ user.email }}</div>
 				</div>
 
 				<app-button

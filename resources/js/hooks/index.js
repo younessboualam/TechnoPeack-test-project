@@ -25,6 +25,12 @@ export function useApi () {
 			data,
 			params
 		}).then(({ data }) => {
+			if (
+				'message' in data || 'error' in data
+			) {
+				return
+			}
+
 			results.value = data
 			isLoading.value = false
 		}).catch(function (error) {
