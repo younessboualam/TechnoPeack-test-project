@@ -63,11 +63,18 @@ const store = createStore({
 			return axios.post('/api/login', credentials).then(({ data }) => {
 				if ('errors' in data) {
 					commit('SET_ERRORS', data.errors)
+
+					const timeout = setTimeout(() => {
+						commit('SET_ERRORS', null)
+						clearTimeout(timeout)
+					}, 700)
+
 					return
 				}
 
 				commit('SET_USER', data.user)
 				commit('SET_AUTHENTICATED', data.access_token)
+				commit('SET_ERRORS', null)
 
 				router.push({ name:'Products.List' })
 			}).catch((data) => {
@@ -79,11 +86,18 @@ const store = createStore({
 			return axios.post('/api/register', data).then(({ data })=>{
 				if ('errors' in data) {
 					commit('SET_ERRORS', data.errors)
+
+					const timeout = setTimeout(() => {
+						commit('SET_ERRORS', null)
+						clearTimeout(timeout)
+					}, 700)
+
 					return
 				}
 
 				commit('SET_USER', data.user)
 				commit('SET_AUTHENTICATED', data.access_token)
+				commit('SET_ERRORS', null)
 
 				router.push({ name:'Products.List' })
 			}).catch(({response:{ data }})=>{

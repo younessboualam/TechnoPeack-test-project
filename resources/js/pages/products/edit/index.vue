@@ -13,14 +13,14 @@
 	function updateProduct() {
 		execute({
 			method: 'put',
-			url: `/products/update/`,
+			url: `/api/products/update/`,
 			data: products.value
 		})
 
 		router.push({ name: 'Products.List' })
 	}
 
-	execute({ url: `/products/edit/${ id }` })
+	execute({ url: `/api/products/edit/${ id }` })
 
 	function chooseImage ({ target }) {
 		product.value.image = target.files[0].name

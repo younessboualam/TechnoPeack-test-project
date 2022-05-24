@@ -4,7 +4,7 @@
 	import { useApi } from '../hooks'
 
 	const store = useStore()
-	const { execute } = useApi()
+	const { execute, results } = useApi()
 	
 	const loggedIn = computed(() => {
 		return store.getters.authenticated
@@ -16,10 +16,11 @@
 
 	function logout () {
 		execute({
-			url: '/logout',
+			url: '/api/logout',
 			method: 'post'
 		})
 
+		results.value = []
 		store.dispatch('logout')
 	}
 </script>

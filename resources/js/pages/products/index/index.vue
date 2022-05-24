@@ -10,7 +10,7 @@
 
 	function deleteProducts () {
 		execute({
-			url: `/products/delete/${ selectedIDs.value.toString() }`,
+			url: `/api/products/delete/${ selectedIDs.value.toString() }`,
 			method: 'delete'
 		})
 
@@ -35,7 +35,7 @@
 				value = target.textContent
 
 		execute({
-			url: `/products/update/${ id }`,
+			url: `/api/products/update/${ id }`,
 			method: 'put',
 			data: {
 				[key]: value 
@@ -49,7 +49,7 @@
 		})
 	}
 
-	onMounted(() => execute({ url: '/products' }))
+	onMounted(() => execute({ url: '/api/products' }))
 </script>
 
 <template>

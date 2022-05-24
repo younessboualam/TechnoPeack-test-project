@@ -1,4 +1,5 @@
 <script setup>
+	import { RefreshIcon } from '@heroicons/vue/outline'
 	import { ref, computed } from 'vue'
 
 	import { useStore } from 'vuex'
@@ -21,6 +22,8 @@
 
 		isProcessing.value = false
 		store.dispatch('register', user.value)
+
+		user.value = {}
 	}
 </script>
 
@@ -62,12 +65,10 @@
 				</ul>
 
 				<div>
-					<button :disabled="isProcessing" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-						<svg v-if="isProcessing" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-						</svg>
+					<app-button :disabled="isProcessing" type="submit" class="w-full flex items-center justify-center">
+						<refresh-icon v-if="isProcessing" class="h-4 w-4 animate-spin" />
 						<span class="ml-3">Sign up</span>
-					</button>
+					</app-button>
 				</div>
 			</form>
 		</div>

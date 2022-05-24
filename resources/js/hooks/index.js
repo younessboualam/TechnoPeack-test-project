@@ -7,7 +7,6 @@ export function useApi () {
 	const hasError = ref(false)
 
 	const client = axios.create({
-		baseURL: "/api",
 		withCredentials: true,
 		headers: {
 			'X-Requested-With': 'XMLHttpRequest',

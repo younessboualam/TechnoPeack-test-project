@@ -14,7 +14,7 @@
 
 	function storeProduct () {
 		execute({
-			url: '/products/store',
+			url: '/api/products/store',
 			method: 'post',
 			data: product.value
 		})
