@@ -11,7 +11,7 @@ import Loading from '@/components/Loading'
 const app = createApp(App)
 
 app.component('app-field', Field)
-app.component('app-field', Field)
+app.component('app-button', Button)
 app.component('loading', Loading)
 
 app

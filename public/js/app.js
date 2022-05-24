@@ -21575,7 +21575,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.component('app-field', _components_base_Field__WEBPACK_IMPORTED_MODULE_4__["default"]);
-app.component('app-field', _components_base_Field__WEBPACK_IMPORTED_MODULE_4__["default"]);
+app.component('app-button', _components_base_Button__WEBPACK_IMPORTED_MODULE_5__["default"]);
 app.component('loading', _components_Loading__WEBPACK_IMPORTED_MODULE_6__["default"]);
 app.use(_store__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
