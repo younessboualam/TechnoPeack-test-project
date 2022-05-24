@@ -10,9 +10,11 @@
 	const attrs = useAttrs()
 	const emits = defineEmits(['file:select', 'update:modelValue'])
 	const props = defineProps(['modelValue'])
+	const classes = 'block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500'
+
 
 	function updateValue ({ target }) {
-		emits('update:modelValue', target.value)
+		emits('update:modelValue', target.value || target.checked)
 	}
 </script>
 
@@ -23,26 +25,28 @@
 		</label>
 
 		<input
-			v-if="!['file', 'textarea'].includes(attrs.type)"
+			v-if="['text', 'number'].includes(attrs.type)"
+			
 			:value="modelValue" v-bind="attrs"
+			:class="classes"
 
-			:class="[
-				{ 'w-full': attrs.type != 'checkbox', 'w-6 h-6': attrs.type == 'checkbox' },
-				'block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900',
-				'focus:ring-indigo-500 focus:border-indigo-500',
-			]"
+			@input="updateValue"
+		>
+
+		<input
+			v-else-if="attrs.type === 'checkbox'"
+
+			:value="modelValue" v-bind="attrs"
+			:class="[classes, 'w-6 h-6']"
 
 			@input="updateValue"
 		>
 
 		<textarea
 			v-else-if="attrs.type === 'textarea'"
+
 			:value="modelValue" v-bind="attrs"
-			
-			:class="[
-				'w-full block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900',
-				'focus:ring-indigo-500 focus:border-indigo-500',
-			]"
+			:class="classes"
 
 			@input="updateValue"
 		>{{ modelValue }}</textarea>
@@ -51,9 +55,8 @@
 			v-else type="file" v-bind="attrs"
 			
 			:class="[
-				'w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900',
-				'file:bg-transparent file:border-none file:p-0 file:text-indigo-500 file:font-bold file:mr-3',
-				'focus:ring-indigo-500 focus:border-indigo-500',
+				classes,
+				'w-full file:bg-transparent file:border-none file:p-0 file:text-indigo-500 file:font-bold file:mr-3',
 			]"
 
 			@change="(event) => emits('file:select', event)"

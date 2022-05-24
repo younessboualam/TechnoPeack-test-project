@@ -1,5 +1,5 @@
 <script setup>
-	import { PlusIcon, TrashIcon, PencilAltIcon, EyeIcon } from '@heroicons/vue/outline'
+	import { PlusIcon, TrashIcon, StarIcon, PencilAltIcon, EyeIcon } from '@heroicons/vue/outline'
 	import { computed, ref, onMounted } from 'vue'
 	import { useApi } from '@/hooks'
 	import { useRouter } from 'vue-router'
@@ -99,6 +99,7 @@
 				<th class="p-2">Title</th>
 				<th class="p-2">Price</th>
 				<th class="p-2">Quantity</th>
+				<th class="p-2">Featured</th>
 				<th class="p-2">View</th>
 			</thead>
 
@@ -135,6 +136,11 @@
 					<td class="p-2" @blur="updateCol" data-col="title" contenteditable>{{ product.title }}</td>
 					<td class="p-2" @blur="updateCol" data-col="price" contenteditable>{{ product.price }}</td>
 					<td class="p-2" @blur="updateCol" data-col="quantity" contenteditable>{{ product.quantity }}</td>
+
+					<td class="p-2">
+						<star-icon v-if="product.featured" class="block w-4 h-4 fill-yellow-500 stroke-yellow-500"></star-icon>
+					</td>
+
 					<td class="p-2">
 						<router-link :to="{ name: 'Products.Show', params: { id: product.id }}">
 							<eye-icon class="w-4 h-4 stroke-sky-500" />

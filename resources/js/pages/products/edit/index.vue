@@ -38,7 +38,9 @@
 
 <template>
 	<section class="max-w-7xl mx-auto px-4">
-		<router-link :to="{ name: 'Products.List' }">Go back</router-link>
+		<router-link
+			:to="{ name: 'Products.List' }"
+		>Go back</router-link>
 
 		<form @submit.prevent="updateProduct">
 			<table class="w-full mt-5">
@@ -54,7 +56,7 @@
 
 				<tbody>
 					<tr v-if="isLoading">
-						<td colspan="4">
+						<td colspan="7">
 							<loading />
 						</td>
 					</tr>
@@ -76,32 +78,37 @@
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'title')"
-								id="title" required v-model="product.title"></app-field>
+								id="title" type="text" required v-model="product.title"
+							></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'price')"
-								id="price" required v-model="product.price"></app-field>
+								id="price" type="number" required v-model="product.price"
+							></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'quantity')"
-								id="quantity" required v-model="product.quantity"></app-field>
+								id="quantity" type="number" required v-model="product.quantity"
+							></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'description')"
-								id="description" v-model="product.description"></app-field>
+								id="description" type="text" v-model="product.description"
+							></app-field>
 						</td>
 						
 						<td>
 							<app-field
-								class="w-6 h-6 ml-4" checked="product.featured"
+								class="w-6 h-6 ml-4"
+								id="featured" v-model="product.featured" type="checkbox"
 								@update:modelValue="(e) => updateOnce(e, 'featured')"
-								id="featured" v-model="product.featured" type="checkbox"></app-field>
+							></app-field>
 						</td>
 					</tr>
 				</tbody>

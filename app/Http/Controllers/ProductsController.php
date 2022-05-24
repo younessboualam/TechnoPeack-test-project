@@ -60,7 +60,7 @@ class ProductsController extends Controller
 	}
 
 	public function inlineEdit(Request $request, $id) {
-		$pr = Products::where('id', $id)->update($request->all());
+		Products::where('id', $id)->update($request->all());
 
 		return response()->json([
 			'message' => 'Successfully updated'
@@ -68,7 +68,6 @@ class ProductsController extends Controller
 	}
 
 	public function update(Request $request) {
-
 		foreach ($request->all() as $key => $data) {
 			$validator = Validator::make($data, [
 				'title' => 'required',
@@ -95,6 +94,7 @@ class ProductsController extends Controller
 
 			$product->save();
 		}
+		
 
 		return response()->json([
 			'message' => 'Successfully updated'

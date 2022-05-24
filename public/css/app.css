@@ -943,6 +943,17 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+.bg-yellow-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+.fill-yellow-500 {
+  fill: #eab308;
+}
 .stroke-sky-500 {
   stroke: #0ea5e9;
 }
@@ -954,6 +965,9 @@ select {
 }
 .stroke-slate-300 {
   stroke: #cbd5e1;
+}
+.stroke-yellow-500 {
+  stroke: #eab308;
 }
 .p-2 {
   padding: 0.5rem;
