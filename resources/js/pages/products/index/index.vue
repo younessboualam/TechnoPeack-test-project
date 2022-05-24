@@ -6,7 +6,14 @@
 
 	const { execute, results, isLoading, hasError } = useApi()
 	const selectedIDs = ref([])
+	const keyword = ref('')
 	const router = useRouter()
+
+	const filtredProducts = computed(() => {
+		return results.value.data.filter((el) => {
+			return el.title.toLowerCase().includes(keyword.value.toLowerCase())
+		})
+	})
 
 	function deleteProducts () {
 		execute({
@@ -58,15 +65,24 @@
 			Products lists
 
 			<ul class="ml-auto flex items-center space-x-5">
-				<template v-if="selectedIDs.length > 0">
-					<li class="cursor-pointer">
-						<pencil-alt-icon @click="editProducts" class="h-6 w-6 stroke-sky-500" />
-					</li>
+				<li>
+					<pencil-alt-icon v-if="selectedIDs.length > 0" @click="editProducts" class="h-6 w-6 stroke-sky-500 cursor-pointer" />
+					<pencil-alt-icon v-else class="h-6 w-6 stroke-slate-300" />
+				</li>
 
-					<li class="cursor-pointer">
-						<trash-icon @click="deleteProducts" class="h-6 w-6 stroke-red-500" />
-					</li>
-				</template>
+				<li>
+					<trash-icon v-if="selectedIDs.length > 0" @click="editProducts" class="h-6 w-6 stroke-red-500 cursor-poin" />
+					<trash-icon v-else class="h-6 w-6 stroke-slate-300" />
+				</li>
+
+				<li>
+					<app-field
+						v-model="keyword"
+						class="rounded-full"
+						placeholder="Search product"
+						type="text"
+					></app-field>
+				</li>
 
 				<li>
 					<router-link :to="{ name: 'Products.Store' }" class="bg-sky-500 py-2 px-3 rounded-md flex text-sm items-center">
@@ -92,7 +108,9 @@
 				</tr>
 				
 				<tr v-else-if="isLoading">
-					<loading />
+					<td class="p-2" colspan="6">
+						<loading />
+					</td>
 				</tr>
 
 				<tr v-else-if="results.data.length == 0">
@@ -101,7 +119,7 @@
 
 				<tr
 					v-else
-					v-for="product in results.data"
+					v-for="product in filtredProducts"
 					:key="product.id"
 					:data-id="product.id"
 					class="odd:bg-slate-100"
@@ -111,7 +129,7 @@
 					</td>
 
 					<td class="p-2">
-						<img class="w-10" :src="`images/products/${ product.image }`" alt="">
+						<img loading="lazy" class="w-10" :src="`images/products/${ product.image }`" alt="">
 					</td>
 
 					<td class="p-2" @blur="updateCol" data-col="title" contenteditable>{{ product.title }}</td>

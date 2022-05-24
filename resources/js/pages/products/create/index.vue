@@ -46,7 +46,6 @@
 					v-for="field in form"
 					:key="field.key"
 					
-					:f-key="field.key"
 					:type="field.type"
 					:required="field.required"
 

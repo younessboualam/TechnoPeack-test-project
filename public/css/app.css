@@ -952,6 +952,9 @@ select {
 .stroke-white {
   stroke: #fff;
 }
+.stroke-slate-300 {
+  stroke: #cbd5e1;
+}
 .p-2 {
   padding: 0.5rem;
 }
@@ -1045,6 +1048,10 @@ select {
 .text-sky-500 {
   --tw-text-opacity: 1;
   color: rgb(14 165 233 / var(--tw-text-opacity));
+}
+.text-sky-100 {
+  --tw-text-opacity: 1;
+  color: rgb(224 242 254 / var(--tw-text-opacity));
 }
 .placeholder-gray-500::-moz-placeholder {
   --tw-placeholder-opacity: 1;

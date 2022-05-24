@@ -65,42 +65,43 @@
 						:key="product.id"
 					>
 						<td>
-							<app-field f-key="id" type="hidden" v-model="product.id"></app-field>
+							<app-field id="id" type="hidden" v-model="product.id"></app-field>
 						</td>
 
 						<td class="flex items-center space-x-4">
-							<img :src="`/images/products/${ product.image }`" class="w-12 h-12">
-							<app-field f-key="image" type="file" @file:select="(e) => chooseImage(e, index)"></app-field>
+							<img loading="lazy" :src="`/images/products/${ product.image }`" class="w-12 h-12">
+							<app-field id="image" type="file" @file:select="(e) => chooseImage(e, index)"></app-field>
 						</td>
 
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'title')"
-								f-key="title" required v-model="product.title"></app-field>
+								id="title" required v-model="product.title"></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'price')"
-								f-key="price" required v-model="product.price"></app-field>
+								id="price" required v-model="product.price"></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'quantity')"
-								f-key="quantity" required v-model="product.quantity"></app-field>
+								id="quantity" required v-model="product.quantity"></app-field>
 						</td>
 						
 						<td>
 							<app-field
 								@update:modelValue="(e) => updateOnce(e, 'description')"
-								f-key="description" v-model="product.description"></app-field>
+								id="description" v-model="product.description"></app-field>
 						</td>
 						
 						<td>
 							<app-field
+								class="w-6 h-6 ml-4" checked="product.featured"
 								@update:modelValue="(e) => updateOnce(e, 'featured')"
-								f-key="featured" v-model="product.featured" type="checkbox"></app-field>
+								id="featured" v-model="product.featured" type="checkbox"></app-field>
 						</td>
 					</tr>
 				</tbody>
