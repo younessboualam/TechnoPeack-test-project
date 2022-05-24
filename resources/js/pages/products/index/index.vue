@@ -1,5 +1,5 @@
 <script setup>
-	import { PlusIcon, TrashIcon, PencilAltIcon } from '@heroicons/vue/outline'
+	import { PlusIcon, TrashIcon, PencilAltIcon, EyeIcon } from '@heroicons/vue/outline'
 	import { computed, ref, onMounted } from 'vue'
 	import { useApi } from '@/hooks'
 	import { useRouter } from 'vue-router'
@@ -83,6 +83,7 @@
 				<th class="p-2">Title</th>
 				<th class="p-2">Price</th>
 				<th class="p-2">Quantity</th>
+				<th class="p-2">View</th>
 			</thead>
 
 			<tbody class="text-left">
@@ -91,7 +92,7 @@
 				</tr>
 				
 				<tr v-else-if="isLoading">
-					<td class="p-2">Loading ...</td>
+					<loading />
 				</tr>
 
 				<tr v-else-if="results.data.length == 0">
@@ -116,6 +117,11 @@
 					<td class="p-2" @blur="updateCol" data-col="title" contenteditable>{{ product.title }}</td>
 					<td class="p-2" @blur="updateCol" data-col="price" contenteditable>{{ product.price }}</td>
 					<td class="p-2" @blur="updateCol" data-col="quantity" contenteditable>{{ product.quantity }}</td>
+					<td class="p-2">
+						<router-link :to="{ name: 'Products.Show', params: { id: product.id }}">
+							<eye-icon class="w-4 h-4 stroke-sky-500" />
+						</router-link>
+					</td>
 				</tr>
 			</tbody>
 		</table>

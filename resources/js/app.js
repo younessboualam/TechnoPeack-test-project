@@ -6,11 +6,13 @@ import store from '@/store'
 
 import Field from '@/components/base/Field'
 import Button from '@/components/base/Button'
+import Loading from '@/components/Loading'
 
 const app = createApp(App)
 
 app.component('app-field', Field)
-app.component('app-button', Button)
+app.component('app-field', Field)
+app.component('loading', Loading)
 
 app
 	.use(store)

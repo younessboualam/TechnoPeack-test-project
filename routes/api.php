@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function() {
 		->group(
 			function () {
 				Route::get('/', 'index');
+				Route::get('/{id}', 'show');
 				Route::post('/store', 'store');
 				Route::get('/edit/{id}', 'edit');
 				Route::put('/update', 'update');

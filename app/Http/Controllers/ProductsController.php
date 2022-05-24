@@ -53,6 +53,12 @@ class ProductsController extends Controller
 		return response()->json($products);
 	}
 
+	public function show($id) {
+		$product = Products::findOrFail($id);
+
+		return response()->json($product);
+	}
+
 	public function inlineEdit(Request $request, $id) {
 		$pr = Products::where('id', $id)->update($request->all());
 

@@ -1,6 +1,7 @@
 <script setup>
 	import { ref } from 'vue'
-	import { useRouter, useRoute } from 'vue-router'
+	
+	import { useRouter } from 'vue-router'
 	import { useApi } from '@/hooks'
 
 	import form from './form'
@@ -8,7 +9,9 @@
 	const { results: products, execute, isLoading } = useApi()
 
 	const router = useRouter()
-	const { params: { id }} = useRoute()
+	const props = defineProps({
+		id: String
+	})
 
 	function updateProduct() {
 		execute({
@@ -20,10 +23,10 @@
 		router.push({ name: 'Products.List' })
 	}
 
-	execute({ url: `/api/products/edit/${ id }` })
+	execute({ url: `/api/products/edit/${ props.id }` })
 
-	function chooseImage ({ target }) {
-		product.value.image = target.files[0].name
+	function chooseImage ({ target }, index) {
+		products.value[index].image = target.files[0].name
 	}
 
 	function updateOnce (value, key) {
@@ -51,12 +54,14 @@
 
 				<tbody>
 					<tr v-if="isLoading">
-						<td>Loading ...</td>
+						<td colspan="4">
+							<loading />
+						</td>
 					</tr>
 
 					<tr
 						v-else
-						v-for="product in products"
+						v-for="(product, index) in products"
 						:key="product.id"
 					>
 						<td>
@@ -65,7 +70,7 @@
 
 						<td class="flex items-center space-x-4">
 							<img :src="`/images/products/${ product.image }`" class="w-12 h-12">
-							<app-field f-key="image" type="file" @file:select="chooseImage"></app-field>
+							<app-field f-key="image" type="file" @file:select="(e) => chooseImage(e, index)"></app-field>
 						</td>
 
 						<td>

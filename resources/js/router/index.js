@@ -5,6 +5,7 @@ import Register from '@/pages/Register.vue'
 
 import Index from '@/pages/products/index'
 import Create from '@/pages/products/create'
+import Show from '@/pages/products/show'
 import Edit from '@/pages/products/edit'
 
 const routes = [{
@@ -31,7 +32,14 @@ const routes = [{
 	component: Create,
 	meta: { requiresAuth: true }
 }, {
+	props: true,
 	path: '/products/:id',
+	name: 'Products.Show',
+	component: Show,
+	meta: { requiresAuth: true }
+}, {
+	props: true,
+	path: '/products/edit/:id',
 	name: 'Products.Edit',
 	component: Edit,
 	meta: { requiresAuth: true }
