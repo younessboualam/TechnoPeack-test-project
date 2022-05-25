@@ -71,7 +71,14 @@
 
 							@update:modelValue="(e) => updateOnce(e, field.key)"
 						>
-							{{ field.label }}
+							<div class="flex">
+								<span
+									v-if="field.key === 'colour'"
+									class="block w-6 h-6 rounded-full mr-2"
+									:style="`background: ${ product.colour }`"
+								></span>
+								{{ field.label }}
+							</div>
 						</app-field>
 					</div>
 				</div>

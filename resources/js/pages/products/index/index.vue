@@ -114,7 +114,10 @@
 				</td>
 				
 				<td class="p-2">
-					<span class="block rounded-lg w-5 h-5" :style="`background: ${ product.colour }`"></span>	
+					<span 
+						class="block rounded-full w-5 h-5"
+						:style="`background: ${ product.colour }`"
+					></span>	
 				</td>
 
 				<td class="p-2">
