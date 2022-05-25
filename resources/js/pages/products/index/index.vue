@@ -10,8 +10,8 @@
 	const keyword = ref('')
 
 	const headings = [
-		'check', 'Image', 'Title', 'Colour', 'Category',
-		'Price', 'Quantity', 'Featured', 'View'
+		'check', 'Image', 'Title', 'Category', 'Price',
+		'Quantity', 'Colour', 'Featured', 'View'
 	]
 
 	const filtredProducts = computed(() => {

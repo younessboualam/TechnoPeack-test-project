@@ -20270,7 +20270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     var selectedIDs = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var keyword = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
-    var headings = ['check', 'Image', 'Title', 'Colour', 'Category', 'Price', 'Quantity', 'Featured', 'View'];
+    var headings = ['check', 'Image', 'Title', 'Category', 'Price', 'Quantity', 'Colour', 'Featured', 'View'];
     var filtredProducts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return results.value.data.filter(function (el) {
         return el.title.toLowerCase().includes(keyword.value.toLowerCase());
