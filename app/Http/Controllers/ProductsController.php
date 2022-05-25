@@ -30,17 +30,26 @@ class ProductsController extends Controller
 			]);
 		}
 
-		$product = Products::create([
-			'title' => $request->title,
-			'image' => $request->image,
-			'price' => $request->price,
-			'category' => $request->category,
-			'colour' => $request->colour,
-			'description' => $request->description,
-			'featured' => $request->has('featured'),
-			'quantity' => $request->quantity,
-			'user_id' => \Auth::user()->id
-		]);
+		$product = new Products;
+		$product->title = $request->title;
+		$product->price = $request->price;
+		$product->colour = $request->colour;
+		$product->category = $request->category;
+		$product->description = $request->description;
+		$product->featured = $request->featured;
+		$product->quantity = $request->quantity;
+		$product->user_id = \Auth::user()->id;
+
+		if($request->file('image')){
+
+			$file = $request->file('image');
+			$filename = date('YmdHi') . $file->getClientOriginalName();
+			$file->move(public_path('images/products'), $filename);
+
+			$product->image = $filename;
+		}
+
+		$product->save();
 
 		return response()->json([
 			'message' => 'Successfully added'
@@ -87,7 +96,6 @@ class ProductsController extends Controller
 
 			$product = Products::findOrFail($data['id']);
 			$product->title = $data['title'];
-			$product->image = $data['image'];
 			$product->price = $data['price'];
 			$product->colour = $data['colour'];
 			$product->category = $data['category'];
@@ -95,6 +103,15 @@ class ProductsController extends Controller
 			$product->featured = $data['featured'];
 			$product->quantity = $data['quantity'];
 			$product->user_id = \Auth::user()->id;
+
+			if($request->file('image')){
+
+				$file = $request->file('image');
+				$filename = date('YmdHi') . $file->getClientOriginalName();
+				$file->move(public_path('images/products'), $filename);
+
+				$product->image = $filename;
+			}
 
 			$product->save();
 		}

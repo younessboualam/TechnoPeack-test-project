@@ -67,7 +67,12 @@
 			</tool-bar>
 		</h1>
 
-		<data-table :headings="headings" :results="results">
+		<data-table
+			:headings="headings"
+			:results="results"
+
+			@next="nextPage"
+		>
 			<tr v-if="hasError">
 				<td class="p-2">An error occurented</td>
 			</tr>

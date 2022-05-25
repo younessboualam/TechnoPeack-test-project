@@ -4,10 +4,6 @@ export default [{
 	label: 'Product title',
 	required: true,
 }, {
-	key: 'image',
-	type: 'file',
-	label: 'Product image'
-}, {
 	key: 'price',
 	type: 'number',
 	label: 'Product price',

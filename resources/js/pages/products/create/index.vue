@@ -1,6 +1,6 @@
 <script setup>
 	import { ArrowLeftIcon } from '@heroicons/vue/outline'
-	import { ref } from 'vue'
+	import { ref, computed } from 'vue'
 	import { useRouter } from 'vue-router'
 	import { useApi } from '@/hooks'
 	
@@ -9,24 +9,30 @@
 	const { execute, results } = useApi()
 	const router = useRouter()
 
-	const dataForm = ref(new FormData())
+	const formData = ref(new FormData())
 	const image = ref(null)
 	const product = ref({})
 
+	const errors = computed(() => results.value.errors)
+
 	function storeProduct () {
+		Object.entries(product.value)
+			.forEach(([key, value]) => {
+				formData.value.set(key, value)
+			}
+		)
+
 		execute({
 			url: '/api/products/store',
 			method: 'post',
-			data: product.value
+			data: formData.value
 		})
 
 		router.push({ name: 'Products.List' })
 	}
 
 	function prevewImage ({ target }) {
-		product.value.image = target.files[0].name
-    	dataForm.value.append('image', target.files[0].name)
-    	
+    	formData.value.set('image', target.files[0])
 		image.value.src = URL.createObjectURL(target.files[0])
 	}
 </script>
@@ -59,11 +65,19 @@
 					:required="field.required"
 
 					v-model="product[field.key]"
-
 					class="w-full mb-3"
+
 					@file:select="prevewImage"
 				>
-					{{ field.label }}
+					<div class="flex mb-1">
+						{{ field.label }}
+						
+						<span v-if="errors" class="ml-auto text-red-500">
+							<p v-for="error in errors[field.key]">
+								{{ error }}
+							</p>
+						</span>
+					</div>
 				</app-field>
 
 				<app-button type="submit">Create</app-button>

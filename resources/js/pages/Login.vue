@@ -20,8 +20,8 @@
 			url: '/sanctum/csrf-cookie'
 		})
 
-		isProcessing.value = false
 		store.dispatch('login', user.value)
+		isProcessing.value = false
 
 		user.value = {}
 	}

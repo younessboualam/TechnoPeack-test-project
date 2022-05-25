@@ -9,6 +9,7 @@ export function useApi () {
 	const client = axios.create({
 		withCredentials: true,
 		headers: {
+			'Content-Type': 'multipart/form-data',
 			'X-Requested-With': 'XMLHttpRequest',
 			'Accept': 'application/json',
 			'Authorization': 'Bearer ' + localStorage.getItem('token')
