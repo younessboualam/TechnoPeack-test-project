@@ -71,7 +71,7 @@
 				</li>
 
 				<li>
-					<trash-icon v-if="selectedIDs.length > 0" @click="editProducts" class="h-6 w-6 stroke-red-500 cursor-poin" />
+					<trash-icon v-if="selectedIDs.length > 0" @click="deleteProducts" class="h-6 w-6 stroke-red-500 cursor-pointer" />
 					<trash-icon v-else class="h-6 w-6 stroke-slate-300" />
 				</li>
 
@@ -97,6 +97,8 @@
 				<th class="p-2"></th>
 				<th class="p-2">Image</th>
 				<th class="p-2">Title</th>
+				<th class="p-2">Colour</th>
+				<th class="p-2">Category</th>
 				<th class="p-2">Price</th>
 				<th class="p-2">Quantity</th>
 				<th class="p-2">Featured</th>
@@ -134,6 +136,12 @@
 					</td>
 
 					<td class="p-2" @blur="updateCol" data-col="title" contenteditable>{{ product.title }}</td>
+					
+					<td class="p-2" @blur="updateCol" data-col="colour">
+						<span class="block rounded-lg w-5 h-5" :style="`background: ${ product.colour }`"></span>	
+					</td>
+					
+					<td class="p-2" @blur="updateCol" data-col="category" contenteditable>{{ product.category }}</td>
 					<td class="p-2" @blur="updateCol" data-col="price" contenteditable>{{ product.price }}</td>
 					<td class="p-2" @blur="updateCol" data-col="quantity" contenteditable>{{ product.quantity }}</td>
 
@@ -143,7 +151,7 @@
 
 					<td class="p-2">
 						<router-link :to="{ name: 'Products.Show', params: { id: product.id }}">
-							<eye-icon class="w-4 h-4 stroke-sky-500" />
+							<eye-icon class="w-5 h-5 stroke-sky-500" />
 						</router-link>
 					</td>
 				</tr>

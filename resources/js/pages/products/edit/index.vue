@@ -1,4 +1,5 @@
 <script setup>
+	import { ArrowLeftIcon } from '@heroicons/vue/outline'
 	import { ref } from 'vue'
 	
 	import { useRouter } from 'vue-router'
@@ -39,82 +40,44 @@
 <template>
 	<section class="max-w-7xl mx-auto px-4">
 		<router-link
+			class="flex items-center"
 			:to="{ name: 'Products.List' }"
-		>Go back</router-link>
+		>
+			<arrow-left-icon class="w-5 h-5" />
+			<span class="ml-4">Go back</span>
+		</router-link>
 
-		<form @submit.prevent="updateProduct">
-			<table class="w-full mt-5">
-				<thead class="text-left">
-					<th>Id</th>
-					<th class="p-2">Image</th>
-					<th class="p-2">Title</th>
-					<th class="p-2">Price</th>
-					<th class="p-2">Quantity</th>
-					<th class="p-2">Description</th>
-					<th class="p-2">Featured</th>
-				</thead>
+		<form class="mt-6" @submit.prevent="updateProduct">
+			<div
+				v-for="product in products" :key="product.id"
+				class="mb-5 border border-slate-800 rounded-lg p-4"
+			>
+				<h1 class="text-2xl mb-4">
+					{{ product.title }}
+				</h1>
 
-				<tbody>
-					<tr v-if="isLoading">
-						<td colspan="7">
-							<loading />
-						</td>
-					</tr>
+				<div class="flex items-start gap-10">
+					<img loading="lazy" :src="`/images/products/${ product.image }`" class="w-52">
+					
+					<div class="grid grid-cols-4 gap-4">
+						<app-field
+							v-for="field in form"
+							
+							:key="field.key"
+							:type="field.type"
+							class="w-full"
+							
+							v-model="product[field.key]"
 
-					<tr
-						v-else
-						v-for="(product, index) in products"
-						:key="product.id"
-					>
-						<td>
-							<app-field id="id" type="hidden" v-model="product.id"></app-field>
-						</td>
-
-						<td class="flex items-center space-x-4">
-							<img loading="lazy" :src="`/images/products/${ product.image }`" class="w-12 h-12">
-							<app-field id="image" type="file" @file:select="(e) => chooseImage(e, index)"></app-field>
-						</td>
-
-						<td>
-							<app-field
-								@update:modelValue="(e) => updateOnce(e, 'title')"
-								id="title" type="text" required v-model="product.title"
-							></app-field>
-						</td>
-						
-						<td>
-							<app-field
-								@update:modelValue="(e) => updateOnce(e, 'price')"
-								id="price" type="number" required v-model="product.price"
-							></app-field>
-						</td>
-						
-						<td>
-							<app-field
-								@update:modelValue="(e) => updateOnce(e, 'quantity')"
-								id="quantity" type="number" required v-model="product.quantity"
-							></app-field>
-						</td>
-						
-						<td>
-							<app-field
-								@update:modelValue="(e) => updateOnce(e, 'description')"
-								id="description" type="text" v-model="product.description"
-							></app-field>
-						</td>
-						
-						<td>
-							<app-field
-								class="w-6 h-6 ml-4"
-								id="featured" v-model="product.featured" type="checkbox"
-								@update:modelValue="(e) => updateOnce(e, 'featured')"
-							></app-field>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<app-button class="mt-6" type="submit">Update</app-button>
+							@update:modelValue="(e) => updateOnce(e, field.key)"
+						>
+							{{ field.label }}
+						</app-field>
+					</div>
+				</div>
+			</div>
+			
+			<app-button>Update</app-button>
 		</form>
 	</section>
 </template>

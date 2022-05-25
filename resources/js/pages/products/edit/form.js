@@ -13,13 +13,23 @@ export default [{
 	label: 'Product price',
 	required: true
 }, {
+	key: 'category',
+	type: 'text',
+	label: 'Product category',
+	required: true
+}, {
+	key: 'colour',
+	type: 'text',
+	label: 'Product colour',
+	required: true
+}, {
 	key: 'quantity',
 	type: 'number',
 	label: 'Product quantity',
 	required: true
 }, {
 	key: 'description',
-	type: 'textarea',
+	type: 'text',
 	label: 'Product description'
 }, {
 	key: 'featured',

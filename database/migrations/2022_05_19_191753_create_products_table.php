@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('title', 15);
+            $table->string('category');
+            $table->string('colour')->nullable();
             $table->string('image')->default('default.jpg');
+
             $table->text('description')->nullable();
             $table->boolean('featured')->default(0);
 

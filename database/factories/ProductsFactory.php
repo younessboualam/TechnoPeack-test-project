@@ -18,6 +18,8 @@ class ProductsFactory extends Factory
     {
         return [
             'title' => $this->faker->words(5, true),
+            'colour' => $this->faker->hexcolor(),
+            'category' => $this->faker->randomElement(['cameras', 'laptops', 'tv', 'printers', 'phones', 'tablets']),
             'image' => $this->faker->numberBetween($min = 1, $max = 14) . ".jpg",
             'description' => $this->faker->realText(200),
             'featured' => $this->faker->boolean(),

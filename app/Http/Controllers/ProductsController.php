@@ -10,7 +10,7 @@ use App\Models\Products;
 class ProductsController extends Controller
 {
 	function index() {
-		$products = \Auth::user()->products()->paginate(9);
+		$products = \Auth::user()->products()->orderBy('id', 'DESC')->paginate(9);
 
 		return response()->json($products);
 	}
@@ -34,6 +34,8 @@ class ProductsController extends Controller
 			'title' => $request->title,
 			'image' => $request->image,
 			'price' => $request->price,
+			'category' => $request->category,
+			'colour' => $request->colour,
 			'description' => $request->description,
 			'featured' => $request->has('featured'),
 			'quantity' => $request->quantity,
@@ -87,6 +89,8 @@ class ProductsController extends Controller
 			$product->title = $data['title'];
 			$product->image = $data['image'];
 			$product->price = $data['price'];
+			$product->colour = $data['colour'];
+			$product->category = $data['category'];
 			$product->description = $data['description'];
 			$product->featured = $data['featured'];
 			$product->quantity = $data['quantity'];

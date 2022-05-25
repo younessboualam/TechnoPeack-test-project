@@ -8,6 +8,14 @@ export default [{
 	type: 'file',
 	label: 'Product image'
 }, {
+	key: 'category',
+	type: 'text',
+	label: 'Product category'
+}, {
+	key: 'colour',
+	type: 'text',
+	label: 'Product colour'
+}, {
 	key: 'price',
 	type: 'number',
 	label: 'Product price',

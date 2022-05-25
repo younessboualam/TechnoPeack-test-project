@@ -19,7 +19,7 @@
 </script>
 
 <template>
-	<div class="mb-5 last:mb-0">
+	<div>
 		<label class="text-sm mb-3">
 			<slot />
 		</label>

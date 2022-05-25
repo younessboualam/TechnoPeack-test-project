@@ -1,4 +1,5 @@
 <script setup>
+	import { ArrowLeftIcon } from '@heroicons/vue/outline'
 	import { ref } from 'vue'
 	import { useRouter } from 'vue-router'
 	import { useApi } from '@/hooks'
@@ -32,9 +33,17 @@
 
 <template>
 	<section class="max-w-7xl mx-auto px-4">
-		<router-link :to="{ name: 'Products.List' }">Go back</router-link>
+		<router-link
+			class="flex items-center"
+			:to="{ name: 'Products.List' }"
+		>
+			<arrow-left-icon class="w-5 h-5" />
+			<span class="ml-4">Go back</span>
+		</router-link>
 
-		<h1 class="text-4xl flex items-center">Create new product</h1>
+		<h1 class="text-4xl mt-5 flex items-center">
+			Create new product
+		</h1>
 
 		<div class="grid grid-cols-4 gap-10">
 			<form
@@ -51,6 +60,7 @@
 
 					v-model="product[field.key]"
 
+					class="w-full mb-3"
 					@file:select="prevewImage"
 				>
 					{{ field.label }}
