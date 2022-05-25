@@ -14,7 +14,7 @@
 
 
 	function updateValue ({ target }) {
-		emits('update:modelValue', target.value || target.checked)
+		emits('update:modelValue', target.value)
 	}
 </script>
 
