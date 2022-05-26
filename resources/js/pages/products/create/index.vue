@@ -23,8 +23,8 @@
 		)
 
 		execute({
-			url: '/api/products/store',
 			method: 'post',
+			url: '/api/products/store',
 			data: formData.value
 		})
 

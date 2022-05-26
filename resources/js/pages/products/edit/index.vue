@@ -7,6 +7,7 @@
 
 	import form from './form'
 
+	const image = ref(null)
 	const { results: products, execute, isLoading } = useApi()
 
 	const formData = ref(new FormData())
@@ -20,15 +21,14 @@
 		products.value.forEach(product => {
 			Object.entries(product)
 				.forEach(([key, value]) => {
-					formData.value.append(key + '[]', value)
+					formData.value.append(`${ key }[]`, value)
 				}
 			)
 		})
 
 		execute({
-			method: 'put',
+			method: 'post',
 			url: `/api/products/update/`,
-			// data: products.value,
 			data: formData.value,
 		})
 
@@ -41,7 +41,7 @@
 
 	function chooseImage ({ target }, index) {
     	formData.value.append('image[]', target.files[0])
-		products.value[index].image = target.files[0].name
+		image.value[index].src = URL.createObjectURL(target.files[0])
 	}
 
 	function updateOnce (value, key) {
@@ -61,7 +61,11 @@
 			<span class="ml-4">Go back</span>
 		</router-link>
 
-		<form class="mt-6" @submit.prevent="updateProduct">
+		<form
+			class="mt-6"
+			enctype="multipart/form-data"
+			@submit.prevent="updateProduct"
+		>
 			<div
 				v-for="(product, index) in products" :key="product.id"
 				class="mb-5 border border-slate-800 rounded-lg p-4"
@@ -71,20 +75,12 @@
 				</h1>
 
 				<div class="flex items-start gap-10">
-					<img loading="lazy" :src="`/images/products/${ product.image }`" class="w-52">
+					<img
+						ref="image" loading="lazy"
+						:src="`/images/products/${ product.image }`" class="w-52"
+					>
 					
 					<div class="grid grid-cols-4 gap-4">
-						<app-field
-							type="file"
-							class="w-full"
-
-							@file:select="e => chooseImage(e, index)"
-						>
-							<div class="flex">
-								Product image
-							</div>
-						</app-field>
-
 						<app-field
 							v-for="field in form"
 							
@@ -92,6 +88,8 @@
 							:type="field.type"
 							class="w-full"
 							
+							:name="`${field.key}[]`"
+
 							v-model="product[field.key]"
 							@update:modelValue="(e) => updateOnce(e, field.key)"
 						>

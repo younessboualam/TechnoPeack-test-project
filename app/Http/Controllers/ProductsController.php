@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
-// use App\Http\Requests\ProductRequest;
-use Illuminate\Http\Request;
 use App\Models\Products;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
 {
@@ -79,43 +78,47 @@ class ProductsController extends Controller
 	}
 
 	public function update(Request $request) {
-		foreach ($request->all() as $key => $data) {
-			$validator = Validator::make($data, [
-				'title' => 'required',
-				'price' => 'required|numeric',
-				'quantity' => 'required|numeric'
-			]);
+		$inputs = $request->all();
 
-			if ($validator->fails()) {
-				$errors = $validator->errors();
+		foreach ($inputs['id'] as $key => $value) {
+			// $validator = Validator::make($inputs, [
+			// 	'title' => 'required',
+			// 	'price' => 'required|numeric',
+			// 	'quantity' => 'required|numeric'
+			// ]);
+
+			// if ($validator->fails()) {
+			// 	$errors = $validator->errors();
 				
-				return response()->json([
-					'errors' => $errors
-				]);
-			}
+			// 	return response()->json([
+			// 		'errors' => $errors
+			// 	]);
+			// }
 
-			$product = Products::findOrFail($data['id']);
-			$product->title = $data['title'];
-			$product->price = $data['price'];
-			$product->colour = $data['colour'];
-			$product->category = $data['category'];
-			$product->description = $data['description'];
-			$product->featured = $data['featured'];
-			$product->quantity = $data['quantity'];
+
+			$product = Products::findOrFail($inputs['id'][$key]);
+			$product->title = $inputs['title'][$key];
+			$product->price = $inputs['price'][$key];
+			$product->colour = $inputs['colour'][$key];
+			$product->category = $inputs['category'][$key];
+			$product->description = $inputs['description'][$key];
+			$product->featured = $inputs['featured'][$key];
+			$product->quantity = $inputs['quantity'][$key];
 			$product->user_id = \Auth::user()->id;
 
-			if($request->file('image')){
+			// if($request->file('image')){
 
-				$file = $request->file('image');
-				$filename = date('YmdHi') . $file->getClientOriginalName();
-				$file->move(public_path('images/products'), $filename);
+			// 	$file = $request->file('image');
+			// 	$filename = date('YmdHi') . $file->getClientOriginalName();
+			// 	$file->move(public_path('images/products'), $filename);
 
-				$product->image = $filename;
-			}
+			// 	$product->image = $filename;
+			// }
 
 			$product->save();
 		}
-		
+
+		return response()->json($inputs);
 
 		return response()->json([
 			'message' => 'Successfully updated'

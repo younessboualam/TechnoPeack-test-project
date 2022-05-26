@@ -1,4 +1,8 @@
 export default [{
+	key: 'image',
+	type: 'file',
+	label: 'Product image',
+}, {
 	key: 'title',
 	type: 'text',
 	label: 'Product title',
