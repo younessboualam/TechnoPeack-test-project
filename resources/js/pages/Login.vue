@@ -1,5 +1,4 @@
 <script setup>
-	import { RefreshIcon } from '@heroicons/vue/outline'
 	import { ref, computed } from 'vue'
 
 	import { useStore } from 'vuex'
@@ -9,20 +8,14 @@
 	const { execute } = useApi()
 
 	const user = ref({})
-	const isProcessing = ref(false)
-	
 	const errors = computed(() => store.getters.errors)
 
 	function login () {
-		isProcessing.value = true
-
 		execute({
 			url: '/sanctum/csrf-cookie'
 		})
 
 		store.dispatch('login', user.value)
-		isProcessing.value = false
-
 		user.value = {}
 	}
 </script>
@@ -64,8 +57,7 @@
 				<p v-if="errors" class="text-red-500">{{ errors }}</p>
 
 				<div>
-					<app-button :disabled="isProcessing" type="submit" class="w-full flex items-center justify-center">
-						<refresh-icon v-if="isProcessing" class="h-4 w-4 animate-spin" />
+					<app-button type="submit" class="w-full flex items-center justify-center">
 						<span class="ml-3">Sign in</span>
 					</app-button>
 				</div>

@@ -1,8 +1,7 @@
 import { createApp } from 'vue'
 import App from '@/App'
 
-import router from '@/router'
-import store from '@/store'
+import { store, router } from '@/plugins'
 
 import Field from '@/components/base/Field'
 import Button from '@/components/base/Button'

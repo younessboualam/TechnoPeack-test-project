@@ -1,5 +1,5 @@
 import axios from 'axios'
-import router from '@/router'
+import router from '../router'
 
 import { createStore } from 'vuex'
 
@@ -60,7 +60,7 @@ const store = createStore({
 		},
 
 		login({ commit }, credentials) {
-			return axios.post('/api/login', credentials).then(({ data }) => {
+			axios.post('/api/login', credentials).then(({ data }) => {
 				if ('errors' in data) {
 					commit('SET_ERRORS', data.errors)
 
@@ -83,7 +83,7 @@ const store = createStore({
 		},
 
 		register({ commit }, data) {
-			return axios.post('/api/register', data).then(({ data })=>{
+			axios.post('/api/register', data).then(({ data })=>{
 				if ('errors' in data) {
 					commit('SET_ERRORS', data.errors)
 
@@ -106,7 +106,7 @@ const store = createStore({
 		},
 
 		logout({ commit }) {
-			return axios.post('/api/logout').then(({ data })=>{
+			axios.post('/api/logout').then(({ data })=>{
 				commit('LOGOUT')
 
 				localStorage.clear()

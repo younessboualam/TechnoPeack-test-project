@@ -19940,11 +19940,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/RefreshIcon.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/hooks */ "./resources/js/hooks/index.js");
-
 
 
 
@@ -19958,18 +19956,15 @@ __webpack_require__.r(__webpack_exports__);
         execute = _useApi.execute;
 
     var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
-    var isProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters.errors;
     });
 
     function login() {
-      isProcessing.value = true;
       execute({
         url: '/sanctum/csrf-cookie'
       });
       store.dispatch('login', user.value);
-      isProcessing.value = false;
       user.value = {};
     }
 
@@ -19977,10 +19972,8 @@ __webpack_require__.r(__webpack_exports__);
       store: store,
       execute: execute,
       user: user,
-      isProcessing: isProcessing,
       errors: errors,
       login: login,
-      RefreshIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       useStore: vuex__WEBPACK_IMPORTED_MODULE_2__.useStore,
@@ -20996,22 +20989,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.user.remember_me]]), _hoisted_11]), _hoisted_12]), $setup.errors ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_button, {
-    disabled: $setup.isProcessing,
     type: "submit",
     "class": "w-full flex items-center justify-center"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$setup.isProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RefreshIcon"], {
-        key: 0,
-        "class": "h-4 w-4 animate-spin"
-      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_14];
+      return [_hoisted_14];
     }),
     _: 1
     /* STABLE */
 
-  }, 8
-  /* PROPS */
-  , ["disabled"])])], 40
+  })])], 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_4)])]);
 }
@@ -21776,13 +21763,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/App */ "./resources/js/App.vue");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/router */ "./resources/js/router/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/store */ "./resources/js/store/index.js");
-/* harmony import */ var _components_base_Field__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/base/Field */ "./resources/js/components/base/Field.vue");
-/* harmony import */ var _components_base_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/base/Button */ "./resources/js/components/base/Button.vue");
-/* harmony import */ var _components_base_Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/base/Loading */ "./resources/js/components/base/Loading.vue");
-/* harmony import */ var _components_base_DataTable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/base/DataTable */ "./resources/js/components/base/DataTable.vue");
-
+/* harmony import */ var _plugins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/plugins */ "./resources/js/plugins/index.js");
+/* harmony import */ var _components_base_Field__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/base/Field */ "./resources/js/components/base/Field.vue");
+/* harmony import */ var _components_base_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/base/Button */ "./resources/js/components/base/Button.vue");
+/* harmony import */ var _components_base_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/base/Loading */ "./resources/js/components/base/Loading.vue");
+/* harmony import */ var _components_base_DataTable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/base/DataTable */ "./resources/js/components/base/DataTable.vue");
 
 
 
@@ -21791,11 +21776,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App__WEBPACK_IMPORTED_MODULE_1__["default"]);
-app.component('app-field', _components_base_Field__WEBPACK_IMPORTED_MODULE_4__["default"]);
-app.component('app-button', _components_base_Button__WEBPACK_IMPORTED_MODULE_5__["default"]);
-app.component('loading', _components_base_Loading__WEBPACK_IMPORTED_MODULE_6__["default"]);
-app.component('data-table', _components_base_DataTable__WEBPACK_IMPORTED_MODULE_7__["default"]);
-app.use(_store__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
+app.component('app-field', _components_base_Field__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.component('app-button', _components_base_Button__WEBPACK_IMPORTED_MODULE_4__["default"]);
+app.component('loading', _components_base_Loading__WEBPACK_IMPORTED_MODULE_5__["default"]);
+app.component('data-table', _components_base_DataTable__WEBPACK_IMPORTED_MODULE_6__["default"]);
+app.use(_plugins__WEBPACK_IMPORTED_MODULE_2__.store).use(_plugins__WEBPACK_IMPORTED_MODULE_2__.router).mount("#app");
 
 /***/ }),
 
@@ -21968,10 +21953,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/router/index.js":
-/*!**************************************!*\
-  !*** ./resources/js/router/index.js ***!
-  \**************************************/
+/***/ "./resources/js/plugins/index.js":
+/*!***************************************!*\
+  !*** ./resources/js/plugins/index.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "router": () => (/* reexport safe */ _router__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "store": () => (/* reexport safe */ _store__WEBPACK_IMPORTED_MODULE_1__["default"])
+/* harmony export */ });
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ "./resources/js/plugins/router/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/plugins/store/index.js");
+
+
+
+/***/ }),
+
+/***/ "./resources/js/plugins/router/index.js":
+/*!**********************************************!*\
+  !*** ./resources/js/plugins/router/index.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22069,10 +22073,10 @@ router.beforeEach(function (to, from, next) {
 
 /***/ }),
 
-/***/ "./resources/js/store/index.js":
-/*!*************************************!*\
-  !*** ./resources/js/store/index.js ***!
-  \*************************************/
+/***/ "./resources/js/plugins/store/index.js":
+/*!*********************************************!*\
+  !*** ./resources/js/plugins/store/index.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22082,7 +22086,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/router */ "./resources/js/router/index.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./resources/js/plugins/router/index.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 
 
@@ -22134,7 +22138,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
     },
     login: function login(_ref2, credentials) {
       var commit = _ref2.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/login', credentials).then(function (_ref3) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/login', credentials).then(function (_ref3) {
         var data = _ref3.data;
 
         if ('errors' in data) {
@@ -22158,7 +22162,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
     },
     register: function register(_ref4, data) {
       var commit = _ref4.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref5) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', data).then(function (_ref5) {
         var data = _ref5.data;
 
         if ('errors' in data) {
@@ -22183,7 +22187,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
     },
     logout: function logout(_ref7) {
       var commit = _ref7.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/logout').then(function (_ref8) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/logout').then(function (_ref8) {
         var data = _ref8.data;
         commit('LOGOUT');
         localStorage.clear();
